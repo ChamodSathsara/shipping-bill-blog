@@ -9,7 +9,7 @@ const shippingLabelMaker = {
   metaTitle: "Free Shipping Label Maker – 4x6 & Printable",
   metaDescription: "Make printable shipping labels for free. Create 4x6 thermal or A4/Letter labels as PDF with no signup.",
   keywords: ["shipping label maker", "free shipping label maker", "4x6 shipping label maker", "printable shipping label", "shipping label generator"],
-  status: "coming-soon",
+  status: "live",
   icon: "label",
   highlights: ["4x6 thermal, A4 and Letter sizes", "Sender, receiver, order number and weight", "Download as PDF or print instantly"],
   longDescription: "A fast, private label builder for sellers who ship from home. Add two addresses and order details, then create a clean label sized for your printer.",
