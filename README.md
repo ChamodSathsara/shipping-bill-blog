@@ -11,6 +11,24 @@ npm run dev
 
 Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SITE_URL`. Set `NEXT_PUBLIC_ADSENSE_ID` only after consent management and AdSense approval are ready.
 
+## Neon database
+
+Set the pooled Neon connection string in `.env.local`:
+
+```env
+DATABASE_URL=postgresql://user:password@host-pooler.region.aws.neon.tech/neondb?sslmode=require
+```
+
+The server-only client is in `lib/db.ts`. With the development server running, open `/api/database-health` to verify the connection and the four required ShipKit tables. Never prefix the database URL with `NEXT_PUBLIC_` or import the database client into a Client Component.
+
+This Windows project starts Node with the operating system's trusted certificate store, which avoids `SELF_SIGNED_CERT_IN_CHAIN` when a trusted antivirus or corporate proxy inspects HTTPS:
+
+```powershell
+npm run dev
+```
+
+This makes Node use the Windows trusted certificate store. Do not use `NODE_TLS_REJECT_UNAUTHORIZED=0`.
+
 ## Common updates
 
 - Change the brand, URL, description, email, and social profiles in `lib/siteConfig.ts`.

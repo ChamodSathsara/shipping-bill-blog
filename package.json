@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node --use-system-ca node_modules/next/dist/bin/next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node --use-system-ca node_modules/next/dist/bin/next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
+    "@neondatabase/serverless": "^1.2.0",
     "@tailwindcss/typography": "^0.5.15",
     "clsx": "^2.1.1",
     "date-fns": "^4.0.0",
