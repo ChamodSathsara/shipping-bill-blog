@@ -9,7 +9,7 @@ const packingSlipGenerator = {
   metaTitle: "Free Packing Slip Generator – Printable Template",
   metaDescription: "Create professional packing slips with SKU, quantity and variant details for Etsy, eBay and Shopify orders.",
   keywords: ["packing slip generator", "packing slip template", "free packing slip generator", "printable packing slip", "packing list generator"],
-  status: "coming-soon",
+  status: "live",
   icon: "slip",
   highlights: ["Line items with SKU and variants", "Shop details and customer note", "Print 4x6, A4 or Letter"],
   longDescription: "Turn an order into a tidy packing slip in under a minute. Add line items, variants and a thank-you note, then print it with your label.",
