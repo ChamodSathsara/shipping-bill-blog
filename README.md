@@ -16,7 +16,7 @@ Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SITE_URL`. Set `NEXT_PU
 - Change the brand, URL, description, email, and social profiles in `lib/siteConfig.ts`.
 - Replace home keyword placeholders in `lib/keywords.ts`; home content and metadata read from this list.
 - Add a typed article to `lib/blog.ts`. Long-form content is stored in its `sections` structure and can later be replaced by MDX or a CMS.
-- Change a product's `status` in `lib/products.ts` from `coming-soon` to `live`. The detail page will expose `ToolContainer`; implement the matching component in `components/tools`.
+- Each product owns its content and status in its explicit `app/products/<slug>/page.tsx` file. Change `status` from `coming-soon` to `live` there; the detail view will expose `ToolContainer` for the matching component in `components/tools`.
 - Ad slots reserve fixed space. Development shows placeholders; production uses `NEXT_PUBLIC_ADSENSE_ID`.
 
 ## Routes

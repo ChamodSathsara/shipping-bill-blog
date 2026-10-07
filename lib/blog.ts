@@ -115,7 +115,7 @@ export const blogPosts: BlogPost[] = [
   updatedAt: "2026-09-12",
   category: "Printers & Hardware",
   tags: ["resize label", "thermal printer", "PDF"],
-  relatedProduct: "shipping-label-resizer",
+  relatedProduct: "shipping-label-maker",
   readTime: 10,
   author: authors.dev,
   featured: false,

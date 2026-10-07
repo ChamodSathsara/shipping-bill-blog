@@ -13,7 +13,7 @@ import { JsonLd } from "../components/seo/JsonLd";
 import { Badge } from "../components/ui/Badge";
 import { Breadcrumbs } from "../components/ui/Breadcrumbs";
 import { Container } from "../components/ui/Container";
-import { products } from "../lib/products";
+import type { Product } from "../lib/types/product";
 import { siteConfig } from "../lib/siteConfig";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { getHeadings, getPostBySlug, getRelatedPosts } from "../lib/utils/blog";
@@ -34,7 +34,11 @@ export function BlogPost({ slug }: { slug: string }) {
   if (!post) return <NotFound />;
 
   const headings = getHeadings(post);
-  const product = products.find((p) => p.slug === post.relatedProduct);
+  const product: Product | undefined = post.relatedProduct === "shipping-label-maker" ? {
+    slug: "shipping-label-maker", name: "Shipping Label Maker", summary: "Create printable shipping labels.", metaTitle: "Shipping Label Maker", metaDescription: "Create printable shipping labels.", keywords: ["shipping label maker"], status: "coming-soon", icon: "label", highlights: [], longDescription: "Create clean printable shipping labels.", features: [], steps: [], seoContent: [], faqs: []
+  } : post.relatedProduct === "packing-slip-generator" ? {
+    slug: "packing-slip-generator", name: "Packing Slip Generator", summary: "Create professional packing slips.", metaTitle: "Packing Slip Generator", metaDescription: "Create printable packing slips.", keywords: ["packing slip generator"], status: "coming-soon", icon: "slip", highlights: [], longDescription: "Build tidy packing slips.", features: [], steps: [], seoContent: [], faqs: []
+  } : undefined;
   const related = getRelatedPosts(post);
   const url = `${siteConfig.url}/blog/${post.slug}`;
 

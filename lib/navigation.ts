@@ -15,11 +15,6 @@ export const mainNav: NavItem[] = [
     label: "Packing Slip Generator",
     href: "/products/packing-slip-generator",
     description: "Itemized packing slips with SKU and variants."
-  },
-  {
-    label: "Shipping Label Resizer",
-    href: "/products/shipping-label-resizer",
-    description: "Convert carrier PDFs to 4x6 thermal size."
   }]
 
 },
@@ -43,7 +38,6 @@ export const footerColumns = [
   links: [
   { label: "Shipping Label Maker", href: "/products/shipping-label-maker" },
   { label: "Packing Slip Generator", href: "/products/packing-slip-generator" },
-  { label: "Shipping Label Resizer", href: "/products/shipping-label-resizer" },
   { label: "All products", href: "/products" }]
 
 },

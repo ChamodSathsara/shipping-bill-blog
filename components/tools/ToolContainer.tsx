@@ -4,13 +4,11 @@ import React from "react";
 import type { Product } from "../../lib/types/product";
 import { PackingSlipGenerator } from "./PackingSlipGenerator";
 import { ShippingLabelMaker } from "./ShippingLabelMaker";
-import { ShippingLabelResizer } from "./ShippingLabelResizer";
 
 // Maps product slugs to their tool component. Add an entry when you create a new tool.
 const toolRegistry: Record<string, React.ComponentType> = {
   "shipping-label-maker": ShippingLabelMaker,
-  "packing-slip-generator": PackingSlipGenerator,
-  "shipping-label-resizer": ShippingLabelResizer
+  "packing-slip-generator": PackingSlipGenerator
 };
 
 // The tool area. Never place ads inside this container.

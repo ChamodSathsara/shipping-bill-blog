@@ -10,25 +10,20 @@ import { FaqSection } from "../components/sections/FaqSection";
 import { JsonLd } from "../components/seo/JsonLd";
 import { Container } from "../components/ui/Container";
 import { SectionHeading } from "../components/ui/SectionHeading";
-import { products } from "../lib/products";
+import type { Product } from "../lib/types/product";
 import { siteConfig } from "../lib/siteConfig";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { getPostsByProduct } from "../lib/utils/blog";
-import { NotFound } from "./NotFound";
 
-export function ProductDetail({ slug }: { slug: string }) {
-  const product = products.find((p) => p.slug === slug);
+export function ProductDetail({ product, relatedProduct }: { product: Product; relatedProduct: Product }) {
 
   usePageMeta({
     title: product?.metaTitle ?? "Product not found",
     description: product?.metaDescription ?? "This product could not be found.",
-    path: `/products/${slug ?? ""}`,
+    path: `/products/${product.slug}`,
     keywords: product?.keywords
   });
 
-  if (!product) return <NotFound />;
-
-  const related = products.filter((p) => p.slug !== product.slug);
   const posts = getPostsByProduct(product.slug).slice(0, 3);
   const isLive = product.status === "live";
   const verb = isLive ? "does" : "will do";
@@ -103,9 +98,7 @@ export function ProductDetail({ slug }: { slug: string }) {
         <Container>
           <SectionHeading id="related-products-heading" title="Related tools" />
           <div className="mt-8 grid gap-6 md:grid-cols-2">
-            {related.map((p) =>
-            <ProductSummaryCard key={p.slug} product={p} />
-            )}
+            <ProductSummaryCard product={relatedProduct} />
           </div>
         </Container>
       </section>

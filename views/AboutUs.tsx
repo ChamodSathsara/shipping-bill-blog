@@ -10,11 +10,14 @@ import { PageHeader } from "../components/sections/PageHeader";
 import { Container } from "../components/ui/Container";
 import { SectionHeading } from "../components/ui/SectionHeading";
 import { aboutStats, aboutValues } from "../lib/aboutContent";
-import { products } from "../lib/products";
 import { siteConfig } from "../lib/siteConfig";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 const valueIcons = { free: HeartHandshakeIcon, privacy: LockIcon, craft: PrinterIcon, plain: MessageSquareTextIcon };
+const products = [
+  { slug: "shipping-label-maker", name: "Shipping Label Maker", icon: "label" as const, status: "coming-soon" as const, longDescription: "Create clean printable 4x6, A4 and Letter shipping labels." },
+  { slug: "packing-slip-generator", name: "Packing Slip Generator", icon: "slip" as const, status: "coming-soon" as const, longDescription: "Build tidy packing slips with SKU, quantities and variants." },
+];
 
 export function AboutUs() {
   usePageMeta({
@@ -35,7 +38,7 @@ export function AboutUs() {
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <h2 id="mission-heading" className="font-display text-sm font-bold text-primary">Our mission</h2>
           <p className="font-display text-2xl font-semibold leading-snug tracking-tight text-foreground sm:text-3xl">
-            Make the printing side of fulfillment — labels, slips and resizing — free, fast and private for every independent seller.
+            Make the printing side of fulfillment — labels and packing slips — free, fast and private for every independent seller.
           </p>
         </Container>
       </section>
@@ -49,8 +52,8 @@ export function AboutUs() {
               and every week they lost hours fighting full-page carrier PDFs, cramped marketplace packing slips and label tools that wanted a subscription.
             </p>
             <p>
-              So we built the simple versions we wished existed: a label maker that just prints, a packing slip generator with room for variants, and a resizer
-              that turns any carrier label into a crisp 4x6. Everything runs in your browser, and everything is free.
+              So we built the simple versions we wished existed: a label maker that just prints and a packing slip generator with room for variants.
+              Everything runs in your browser, and everything is free.
             </p>
             <p>
               We fund the work with a small number of clearly labelled ads — never inside the tools themselves — and we publish practical guides so
@@ -93,7 +96,7 @@ export function AboutUs() {
 
       <section aria-labelledby="offer-heading" className="border-t border-border bg-surface py-20">
         <Container>
-          <SectionHeading id="offer-heading" title="What we offer" description="Three focused tools today, with more on the way based on seller feedback." />
+          <SectionHeading id="offer-heading" title="What we offer" description="Two focused tools today, with more on the way based on seller feedback." />
           <ul className="mt-10 divide-y divide-border border-y border-border">
             {products.map((p) =>
             <li key={p.slug}>

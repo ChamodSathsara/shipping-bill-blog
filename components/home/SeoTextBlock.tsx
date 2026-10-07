@@ -21,8 +21,7 @@ export function SeoTextBlock() {
             </p>
             <p>
               The <Link href="/products/packing-slip-generator" className="font-medium text-primary hover:underline">{homeKeyword(2)}</Link> builds itemized slips with SKU and
-              variant details, and the <Link href="/products/shipping-label-resizer" className="font-medium text-primary hover:underline">{homeKeyword(3)}</Link> turns full-page carrier PDFs
-              into labels your {homeKeyword(5)} can print. Every tool runs in your browser, so customer data stays on your device.
+              variant details. Every tool runs in your browser, so customer data stays on your device.
             </p>
           </div>
         </div>
