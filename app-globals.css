@@ -1,0 +1,66 @@
+/* CRITICAL: THE FOLLOWING TAILWIND IMPORTS MUST NEVER BE DELETED OR REORDERED — DO NOT DELETE THIS COMMENT */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
+
+/* Design tokens (HSL channels). Change the brand color here. */
+:root {
+  --background: 0 0% 100%;
+  --surface: 200 33% 98%;
+  --foreground: 222 32% 12%;
+  --card: 0 0% 100%;
+  --muted: 210 25% 96%;
+  --muted-foreground: 215 16% 38%;
+  --border: 214 24% 89%;
+  --primary: 174 84% 25%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 172 55% 94%;
+  --accent-foreground: 174 84% 20%;
+  --warning: 43 96% 90%;
+  --warning-foreground: 28 80% 26%;
+  --destructive: 0 72% 46%;
+  --destructive-foreground: 0 0% 100%;
+  --ring: 174 84% 30%;
+  --radius: 0.75rem;
+}
+.dark {
+  --background: 222 30% 7%;
+  --surface: 222 26% 9%;
+  --foreground: 210 25% 96%;
+  --card: 222 24% 11%;
+  --muted: 222 20% 15%;
+  --muted-foreground: 215 15% 70%;
+  --border: 222 16% 21%;
+  --primary: 170 66% 48%;
+  --primary-foreground: 222 40% 8%;
+  --accent: 174 40% 15%;
+  --accent-foreground: 170 70% 72%;
+  --warning: 40 60% 16%;
+  --warning-foreground: 43 90% 72%;
+  --destructive: 0 70% 58%;
+  --destructive-foreground: 0 0% 100%;
+  --ring: 170 66% 52%;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  @apply bg-background font-sans text-foreground antialiased;
+}
+::selection {
+  background: hsl(var(--primary) / 0.2);
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,22 @@
+// Site-wide constants. Change the brand name here and it updates everywhere.
+export const siteConfig = {
+  name: "ShipKit",
+  tagline: "Free shipping tools for online sellers",
+  description:
+  "Free, browser-based shipping tools for Etsy, eBay, Amazon, Shopify and Poshmark sellers: shipping label maker, packing slip generator and 4x6 label resizer.",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://shipkit.example.com",
+  email: "hello@shipkit.example.com",
+  responseTime: "Within 1–2 business days",
+  ogImage: "https://shipkit.example.com/og-default.png",
+  social: {
+    x: "https://x.com/shipkit",
+    facebook: "https://facebook.com/shipkit",
+    pinterest: "https://pinterest.com/shipkit"
+  },
+  // Google AdSense. Set publisherId (ca-pub-XXXXXXXXXXXXXXXX) and enabled: true in production.
+  // While disabled, every <AdSlot /> renders a dashed placeholder instead of a live ad.
+  adsense: {
+    publisherId: process.env.NEXT_PUBLIC_ADSENSE_ID ?? "",
+    enabled: process.env.NODE_ENV === "production" && Boolean(process.env.NEXT_PUBLIC_ADSENSE_ID)
+  }
+};

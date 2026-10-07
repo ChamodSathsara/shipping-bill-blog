@@ -1,0 +1,2 @@
+import type { MetadataRoute } from "next";
+export default function manifest(): MetadataRoute.Manifest { return { name: "ShipKit", short_name: "ShipKit", description: "Free shipping tools for online sellers", start_url: "/", display: "standalone", background_color: "#ffffff", theme_color: "#0f766e", icons: [] }; }
