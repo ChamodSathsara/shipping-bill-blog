@@ -5,10 +5,10 @@ import { siteConfig } from "../../lib/siteConfig";
 
 // Loads the AdSense script exactly once, after the app is interactive.
 export function AdSenseScript() {
-  const { publisherId, enabled } = siteConfig.adsense;
+  const { publisherId, enabled, visible } = siteConfig.adsense;
 
   useEffect(() => {
-    if (!enabled || !publisherId) return;
+    if (!visible || !enabled || !publisherId) return;
     if (document.querySelector('script[data-adsense="true"]')) return;
     const script = document.createElement("script");
     script.async = true;
@@ -16,7 +16,7 @@ export function AdSenseScript() {
     script.dataset.adsense = "true";
     script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisherId}`;
     document.head.appendChild(script);
-  }, [enabled, publisherId]);
+  }, [visible, enabled, publisherId]);
 
   return null;
 }

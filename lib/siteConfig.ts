@@ -13,10 +13,13 @@ export const siteConfig = {
     facebook: "https://facebook.com/shipkit",
     pinterest: "https://pinterest.com/shipkit"
   },
-  // Google AdSense. Set publisherId (ca-pub-XXXXXXXXXXXXXXXX) and enabled: true in production.
-  // While disabled, every <AdSlot /> renders a dashed placeholder instead of a live ad.
+  // Google AdSense. ANABLE_ADSENSE controls whether ad areas are visible at all.
   adsense: {
+    visible: process.env.NEXT_PUBLIC_ANABLE_ADSENSE?.trim().toLowerCase() === "true",
     publisherId: process.env.NEXT_PUBLIC_ADSENSE_ID ?? "",
-    enabled: process.env.NODE_ENV === "production" && Boolean(process.env.NEXT_PUBLIC_ADSENSE_ID)
+    enabled:
+      process.env.NEXT_PUBLIC_ANABLE_ADSENSE?.trim().toLowerCase() === "true" &&
+      process.env.NODE_ENV === "production" &&
+      Boolean(process.env.NEXT_PUBLIC_ADSENSE_ID)
   }
 };

@@ -2,6 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Expose the server-side flag to client components under a public alias.
+  // Keep supporting the existing (intentionally misspelled) ANABLE_ADSENSE key.
+  env: {
+    NEXT_PUBLIC_ANABLE_ADSENSE: process.env.ANABLE_ADSENSE ?? "false",
+  },
   async redirects() {
     return [
       { source: "/products", destination: "/shipping-label-maker", permanent: true },

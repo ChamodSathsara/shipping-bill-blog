@@ -27,7 +27,7 @@ interface AdSlotProps {
 }
 
 export function AdSlot({ slotId, format, className }: AdSlotProps) {
-  const { publisherId, enabled } = siteConfig.adsense;
+  const { publisherId, enabled, visible } = siteConfig.adsense;
   const live = enabled && publisherId.length > 0;
 
   useEffect(() => {
@@ -38,6 +38,8 @@ export function AdSlot({ slotId, format, className }: AdSlotProps) {
 
       // AdSense not ready (e.g. blocked); the reserved space simply stays empty.
     }}, [live, slotId]);
+
+  if (!visible) return null;
 
   return (
     <aside aria-label="Advertisement" className={cn("w-full", className)}>
