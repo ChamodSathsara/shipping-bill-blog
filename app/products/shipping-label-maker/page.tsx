@@ -6,10 +6,10 @@ const shippingLabelMaker = {
   slug: "shipping-label-maker",
   name: "Shipping Label Maker",
   summary:
-    "Enter sender and receiver details, order number and weight, then generate a printable shipping label for 4x6, A4 or Letter paper.",
+    "Enter sender and receiver details, order number and weight, then generate a printable 4x6 shipping label.",
   metaTitle: "Free Shipping Label Maker – 4x6 & Printable",
   metaDescription:
-    "Make printable shipping labels for free. Create 4x6 thermal or A4/Letter labels as PDF with no signup.",
+    "Make printable 4x6 shipping labels for free and export them as PDF with no signup.",
   keywords: [
     "shipping label maker",
     "free shipping label maker",
@@ -20,7 +20,7 @@ const shippingLabelMaker = {
   status: "live",
   icon: "label",
   highlights: [
-    "4x6 thermal, A4 and Letter sizes",
+    "Standard 4x6 thermal size",
     "Sender, receiver, order number and weight",
     "Download as PDF or print instantly",
   ],
@@ -38,8 +38,8 @@ const shippingLabelMaker = {
         "Print-ready labels for Rollo, Munbyn, Zebra and similar printers.",
     },
     {
-      title: "A4 and Letter sheets",
-      description: "Use regular paper or half-sheet adhesive labels.",
+      title: "Scanner-ready barcode",
+      description: "Generate a standards-compliant Code 128 barcode from the tracking number.",
     },
     {
       title: "Order details",
@@ -63,7 +63,7 @@ const shippingLabelMaker = {
       title: "Add order details",
       description: "Include order number and weight.",
     },
-    { title: "Pick a size", description: "Choose 4x6, A4 or Letter." },
+    { title: "Choose a template", description: "Select a 4x6 layout for your shipment." },
     {
       title: "Print or download",
       description: "Print the label or save a PDF.",
@@ -80,7 +80,7 @@ const shippingLabelMaker = {
     {
       heading: "Print 4x6 labels or use regular paper",
       paragraphs: [
-        "Choose the standard 4x6 thermal format or lay the label out on A4 and US Letter paper. Every format uses readable type and generous spacing for dependable printing.",
+        "Every template uses the standard 4x6 thermal format with readable type, barcode quiet zones and dependable print spacing.",
       ],
     },
   ],
@@ -130,7 +130,7 @@ export const metadata: Metadata = {
   keywords: shippingLabelMaker.keywords,
   alternates: { canonical: "/products/shipping-label-maker" },
 };
-export default function Page() {
+function ShippingLabelMakerPage() {
   return (
     <ProductDetail
       product={shippingLabelMaker}
@@ -138,3 +138,4 @@ export default function Page() {
     />
   );
 }
+export default ShippingLabelMakerPage;

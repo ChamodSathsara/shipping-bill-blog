@@ -16,11 +16,11 @@ export function SeoTextBlock() {
           <div className="mt-4 space-y-4 text-[15px] leading-7 text-muted-foreground">
             <p>
               ShipKit is a growing set of {homeKeyword(4)} who want professional results without paying for a full shipping platform. Our{" "}
-              <Link href="/products/shipping-label-maker" className="font-medium text-primary hover:underline">{homeKeyword(0)}</Link> creates a clean{" "}
+              <Link href="/shipping-label-maker" className="font-medium text-primary hover:underline">{homeKeyword(0)}</Link> creates a clean{" "}
               {homeKeyword(1)} sized for 4x6 thermal labels or regular paper.
             </p>
             <p>
-              The <Link href="/products/packing-slip-generator" className="font-medium text-primary hover:underline">{homeKeyword(2)}</Link> builds itemized slips with SKU and
+              The <Link href="/packing-slip-generator" className="font-medium text-primary hover:underline">{homeKeyword(2)}</Link> builds itemized slips with SKU and
               variant details. Every tool runs in your browser, so customer data stays on your device.
             </p>
           </div>

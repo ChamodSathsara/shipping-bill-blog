@@ -43,10 +43,10 @@ export const POSTS_PER_PAGE = 6;
 
 export const blogPosts: BlogPost[] = [
 {
-  title: "How to Make a 4x6 Shipping Label at Home (Step-by-Step)",
+  title: "How to Use the Shipping Label Maker (Step-by-Step)",
   slug: "how-to-make-a-4x6-shipping-label",
   description:
-  "Everything you need to print professional 4x6 shipping labels from home: sizes, printers, layout rules and a free label maker.",
+  "A step-by-step guide to entering shipment data, choosing a template, bulk generating and printing scanner-ready 4x6 labels.",
   date: "2026-09-18",
   updatedAt: "2026-10-01",
   category: "Shipping Labels",
@@ -76,10 +76,10 @@ export const blogPosts: BlogPost[] = [
   ]
 },
 {
-  title: "What to Include on a Packing Slip (With Free Template)",
+  title: "How to Use the Packing Slip Generator (A4 & A5)",
   slug: "what-to-include-on-a-packing-slip",
   description:
-  "The exact fields a good packing slip needs, what to leave out, and how to make one that reduces returns and support messages.",
+  "Create an A4 or A5 packing slip with order details, line items, branding, customer messages and print-ready PDF output.",
   date: "2026-09-05",
   updatedAt: "2026-09-20",
   category: "Packing & Fulfillment",

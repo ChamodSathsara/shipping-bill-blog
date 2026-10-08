@@ -16,7 +16,7 @@ export function ProductSummaryCard({ product, headingLevel = "h3" }: {product: P
         <StatusBadge status={product.status} />
       </div>
       <Heading className="mt-5 font-display text-xl font-bold text-foreground">
-        <Link href={`/products/${product.slug}`} className="after:absolute after:inset-0 after:rounded-xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-ring">
+        <Link href={`/${product.slug}`} className="after:absolute after:inset-0 after:rounded-xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-ring">
           {product.name}
         </Link>
       </Heading>

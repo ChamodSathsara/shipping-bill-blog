@@ -3,22 +3,27 @@ import type { NavItem } from "../lib/types/site";
 export const mainNav: NavItem[] = [
 { label: "Home", href: "/" },
 {
-  label: "Products",
-  href: "/products",
+  label: "Tools",
+  href: "/shipping-label-maker",
   children: [
   {
     label: "Shipping Label Maker",
-    href: "/products/shipping-label-maker",
-    description: "Printable 4x6, A4 and Letter shipping labels."
+    href: "/shipping-label-maker",
+    description: "Create and print standard 4×6 shipping labels."
   },
   {
     label: "Packing Slip Generator",
-    href: "/products/packing-slip-generator",
-    description: "Itemized packing slips with SKU and variants."
+    href: "/packing-slip-generator",
+    description: "Create A4 or A5 itemized packing slips."
   }]
 
 },
-{ label: "Blogs", href: "/blog" },
+{ label: "Blogs", href: "/blog", children: [
+  { label: "How to use Shipping Label Maker", href: "/blog/how-to-make-a-4x6-shipping-label", description: "Create and print a 4×6 label step by step." },
+  { label: "How to use Packing Slip Generator", href: "/blog/what-to-include-on-a-packing-slip", description: "Build a complete A4 or A5 packing slip." },
+  { label: "Resize labels for thermal printers", href: "/blog/resize-shipping-label-pdf-to-4x6", description: "Keep barcode quality when preparing 4×6 labels." },
+  { label: "Marketplace shipping guide", href: "/blog/etsy-vs-ebay-vs-amazon-shipping-guide", description: "Compare Etsy, eBay and Amazon workflows." }
+] },
 {
   label: "Policy",
   href: "/policy",
@@ -34,11 +39,10 @@ export const mainNav: NavItem[] = [
 
 export const footerColumns = [
 {
-  title: "Products",
+  title: "Tools",
   links: [
-  { label: "Shipping Label Maker", href: "/products/shipping-label-maker" },
-  { label: "Packing Slip Generator", href: "/products/packing-slip-generator" },
-  { label: "All products", href: "/products" }]
+  { label: "Shipping Label Maker", href: "/shipping-label-maker" },
+  { label: "Packing Slip Generator", href: "/packing-slip-generator" }]
 
 },
 {

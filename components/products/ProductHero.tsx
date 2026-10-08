@@ -18,7 +18,7 @@ export function ProductHero({ product }: {product: Product;}) {
   return (
     <section aria-labelledby="product-heading" className="border-b border-border bg-surface">
       <Container className="py-10 md:py-14">
-        <Breadcrumbs items={[{ label: "Products", href: "/products" }, { label: product.name }]} />
+        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: product.name }]} />
         <div className={comingSoon ? "mt-8 grid items-center gap-12 lg:grid-cols-[1fr_1.05fr]" : "mt-8"}>
           <div>
             <div className="flex items-center gap-3">

@@ -22,7 +22,7 @@ export function TryToolCard({ product, className }: {product: Product;className?
           </div>
           <p className="mt-1 text-sm leading-6 text-muted-foreground">{product.longDescription}</p>
         </div>
-        <Link href={`/products/${product.slug}`} className={buttonVariants({ size: "md", className: "shrink-0" })}>
+        <Link href={`/${product.slug}`} className={buttonVariants({ size: "md", className: "shrink-0" })}>
           {live ? "Open tool" : "Learn more"}
           <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
         </Link>

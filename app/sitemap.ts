@@ -4,7 +4,7 @@ import { policies } from "@/lib/policies";
 import { siteConfig } from "@/lib/siteConfig";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/products", "/products/shipping-label-maker", "/products/packing-slip-generator", "/blog", "/policy", "/about-us", "/contact-us"];
+  const routes = ["", "/shipping-label-maker", "/packing-slip-generator", "/blog", "/policy", "/about-us", "/contact-us"];
   return [
     ...routes.map((route) => ({ url: `${siteConfig.url}${route}`, lastModified: new Date(), changeFrequency: "weekly" as const })),
     ...blogPosts.map((p) => ({ url: `${siteConfig.url}/blog/${p.slug}`, lastModified: new Date(p.updatedAt ?? p.date), changeFrequency: "monthly" as const })),

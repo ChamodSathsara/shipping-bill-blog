@@ -25,7 +25,7 @@ export function Hero() {
             Shopify and Poshmark sellers who ship from home.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href="/products" className={buttonVariants({ size: "lg" })}>
+            <Link href="/shipping-label-maker" className={buttonVariants({ size: "lg" })}>
               Explore Free Tools
               <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
             </Link>
