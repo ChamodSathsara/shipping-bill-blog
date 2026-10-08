@@ -1,11 +1,27 @@
 "use client";
 
 import { useEffect, useId, useMemo, useState } from "react";
+import { ChevronDownIcon } from "lucide-react";
 
 type Country = { code: string; name: string; flag: string };
 type RestCountry = { cca2: string; flag?: string; name: { common: string } };
 
 let countryRequest: Promise<Country[]> | undefined;
+
+const ISO_CODES = "AD AE AF AG AI AL AM AO AQ AR AS AT AU AW AX AZ BA BB BD BE BF BG BH BI BJ BL BM BN BO BQ BR BS BT BV BW BY BZ CA CC CD CF CG CH CI CK CL CM CN CO CR CU CV CW CX CY CZ DE DJ DK DM DO DZ EC EE EG EH ER ES ET FI FJ FK FM FO FR GA GB GD GE GF GG GH GI GL GM GN GP GQ GR GS GT GU GW GY HK HM HN HR HT HU ID IE IL IM IN IO IQ IR IS IT JE JM JO JP KE KG KH KI KM KN KP KR KW KY KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME MF MG MH MK ML MM MN MO MP MQ MR MS MT MU MV MW MX MY MZ NA NC NE NF NG NI NL NO NP NR NU NZ OM PA PE PF PG PH PK PL PM PN PR PS PT PW PY QA RE RO RS RU RW SA SB SC SD SE SG SH SI SJ SK SL SM SN SO SR SS ST SV SX SY SZ TC TD TF TG TH TJ TK TL TM TN TO TR TT TV TW TZ UA UG UM US UY UZ VA VC VE VG VI VN VU WF WS XK YE YT ZA ZM ZW".split(" ");
+
+function flagFor(code: string) {
+  return String.fromCodePoint(...[...code].map((letter) => 127397 + letter.charCodeAt(0)));
+}
+
+const fallbackCountries: Country[] = (() => {
+  const names = new Intl.DisplayNames(["en"], { type: "region" });
+  return ISO_CODES.map((code) => ({
+    code,
+    name: names.of(code) ?? code,
+    flag: flagFor(code),
+  })).sort((a, b) => a.name.localeCompare(b.name));
+})();
 
 function loadCountries() {
   countryRequest ??= fetch("https://restcountries.com/v3.1/all?fields=name,cca2,flag")
@@ -21,7 +37,8 @@ function loadCountries() {
           flag: country.flag ?? "",
         }))
         .sort((a, b) => a.name.localeCompare(b.name)),
-    );
+    )
+    .catch(() => fallbackCountries);
   return countryRequest;
 }
 
@@ -34,8 +51,7 @@ export function CountrySelect({ value, onChange, className, id }: {
   const generatedId = useId();
   const inputId = id ?? `country-${generatedId}`;
   const listId = `${inputId}-listbox`;
-  const [countries, setCountries] = useState<Country[]>([]);
-  const [failed, setFailed] = useState(false);
+  const [countries, setCountries] = useState<Country[]>(fallbackCountries);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState(value);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -43,8 +59,7 @@ export function CountrySelect({ value, onChange, className, id }: {
   useEffect(() => {
     let active = true;
     loadCountries()
-      .then((items) => active && setCountries(items))
-      .catch(() => active && setFailed(true));
+      .then((items) => active && setCountries(items));
     return () => { active = false; };
   }, []);
 
@@ -72,19 +87,6 @@ export function CountrySelect({ value, onChange, className, id }: {
     setOpen(false);
   }
 
-  if (failed) {
-    return (
-      <input
-        id={inputId}
-        className={className}
-        value={value}
-        maxLength={2}
-        aria-label="Two-letter country code"
-        onChange={(event) => onChange(event.target.value.toUpperCase().slice(0, 2))}
-      />
-    );
-  }
-
   return (
     <div className="relative">
       <input
@@ -99,8 +101,7 @@ export function CountrySelect({ value, onChange, className, id }: {
         aria-activedescendant={open && filtered[activeIndex] ? `${listId}-${filtered[activeIndex].code}` : undefined}
         autoComplete="off"
         spellCheck={false}
-        disabled={countries.length === 0}
-        placeholder={countries.length === 0 ? "Loading countries…" : "Search country or code"}
+        placeholder="Search country or code"
         onFocus={(event) => {
           setOpen(true);
           setActiveIndex(0);
@@ -133,8 +134,12 @@ export function CountrySelect({ value, onChange, className, id }: {
           }
         }}
       />
+      <ChevronDownIcon
+        className={`pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`}
+        aria-hidden="true"
+      />
 
-      {open && countries.length > 0 ? (
+      {open ? (
         <div id={listId} role="listbox" className="absolute z-50 mt-1 max-h-64 w-full overflow-y-auto overscroll-contain rounded-lg border border-border bg-background p-1 shadow-xl">
           {filtered.length > 0 ? filtered.map((country, index) => (
             <div
