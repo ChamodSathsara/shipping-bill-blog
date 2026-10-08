@@ -3,6 +3,7 @@ import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 
 import { sql } from "@/lib/db";
 import { labelTemplates } from "@/lib/shipping-label";
+import { renderShippingLabelPdf } from "@/lib/shipping-label-pdf";
 
 export const dynamic = "force-dynamic";
 
@@ -20,7 +21,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     if (!/^\d+$/.test(id)) return NextResponse.json({ message: "Invalid label id" }, { status: 400 });
 
     const templateId = Number(new URL(request.url).searchParams.get("template") ?? 1);
-    const template = labelTemplates.find((item) => item.id === templateId) ?? labelTemplates[0];
+    const template = (labelTemplates.find((item) => item.id === templateId) ?? labelTemplates[0]) as { id: 1|2|3|4|5; width: number; height: number; layout: string };
 
     const [label] = await sql`
       SELECT
@@ -40,6 +41,18 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     `;
 
     if (!label) return NextResponse.json({ message: "Label not found" }, { status: 404 });
+
+    const rendered = await renderShippingLabelPdf([{
+      sender:{name:clean(label.from_name),company:clean(label.from_company),addressLine1:clean(label.from_line_1),addressLine2:clean(label.from_line_2),city:clean(label.from_city),state:clean(label.from_state),zipCode:clean(label.from_postal),country:clean(label.from_country),phone:clean(label.from_phone)},
+      recipient:{name:clean(label.to_name),company:clean(label.to_company),addressLine1:clean(label.to_line_1),addressLine2:clean(label.to_line_2),city:clean(label.to_city),state:clean(label.to_state),zipCode:clean(label.to_postal),country:clean(label.to_country),phone:clean(label.to_phone)},
+      package:{type:label.package_type,weight:Number(label.weight),weightUnit:label.weight_unit,dimensionUnit:label.dimension_unit,length:Number(label.package_length),width:Number(label.package_width),height:Number(label.package_height)},
+      shipping:{carrier:label.carrier,marketplace:label.marketplace,industryPreset:label.industry_preset},
+      format:{serviceLevel:label.service_level,labelFormat:label.label_format,shipDate:clean(label.ship_date).slice(0,10),quantity:Number(label.label_quantity)},
+      heading:{showHeading:Boolean(label.show_heading),customHeading:clean(label.custom_heading)},
+      tracking:{trackingNumber:clean(label.tracking_number),referenceNumber:clean(label.reference_number),handlingInstructions:clean(label.handling_instructions)},
+    }], template.id);
+    const renderedFilename = `shipping-label-${safeFilePart(clean(label.reference_number) || id)}.pdf`;
+    return new NextResponse(Buffer.from(rendered), {headers:{"Content-Type":"application/pdf","Content-Disposition":`inline; filename="${renderedFilename}"`,"Cache-Control":"private, no-store"}});
 
     const pdf = await PDFDocument.create();
     const regular = await pdf.embedFont(StandardFonts.Helvetica);

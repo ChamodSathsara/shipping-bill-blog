@@ -1,11 +1,11 @@
 import { z } from "zod";
 
 export const labelTemplates = [
-  { id: 1, code: "STANDARD_4X6", name: "Standard 4×6", description: "Balanced carrier-style layout", width: 4, height: 6, layout: "standard" },
-  { id: 2, code: "COMPACT_3X4", name: "Compact 3×4", description: "Small parcels and mailers", width: 3, height: 4, layout: "compact" },
-  { id: 3, code: "MINIMAL_4X6", name: "Minimal 4×6", description: "Clean address-first design", width: 4, height: 6, layout: "minimal" },
-  { id: 4, code: "BARCODE_4X6", name: "Barcode Focused", description: "Tracking information emphasized", width: 4, height: 6, layout: "barcode" },
-  { id: 5, code: "MARKETPLACE_4X6", name: "Marketplace Style", description: "Channel and order details", width: 4, height: 6, layout: "marketplace" },
+  { id: 1, code: "MARKETPLACE_4X6", name: "Marketplace", description: "Marketplace order with a bold delivery card", width: 4, height: 6, layout: "marketplace" },
+  { id: 2, code: "MINIMAL_MONO_4X6", name: "Minimal Mono", description: "Monochrome postal layout with large ZIP", width: 4, height: 6, layout: "minimal-mono" },
+  { id: 3, code: "CLEAN_HIERARCHY_4X6", name: "Clean Hierarchy", description: "Address-first layout with strong hierarchy", width: 4, height: 6, layout: "clean-hierarchy" },
+  { id: 4, code: "SIMPLE_LIST_4X6", name: "Simple List", description: "Clear two-column shipment summary", width: 4, height: 6, layout: "simple-list" },
+  { id: 5, code: "STANDARD_BARCODE_4X6", name: "Standard Barcode", description: "Classic shipping data with barcode", width: 4, height: 6, layout: "standard-barcode" },
 ] as const;
 
 export type TemplateId = (typeof labelTemplates)[number]["id"];
