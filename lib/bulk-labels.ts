@@ -35,5 +35,5 @@ export function validateBulkRecord(record: BulkSheetRecord, rowNumber: number): 
   const candidate = recordToLabelData(record);
   const parsed = labelDataSchema.safeParse(candidate);
   if (parsed.success) return { rowNumber, recipient: parsed.data.recipient.name, tracking: parsed.data.tracking.trackingNumber, status: "valid", errors: [], labelData: parsed.data };
-  return { rowNumber, recipient: candidate.recipient.name || "—", tracking: candidate.tracking.trackingNumber || "—", status: "invalid", errors: parsed.error.issues.map((issue) => `${issue.path.join(".")}: ${issue.message}`) };
+  return { rowNumber, recipient: candidate.recipient.name || "—", tracking: candidate.tracking.trackingNumber || "—", status: "invalid", errors: parsed.error.issues.map((issue) => `${issue.path.join(".")}: ${issue.message}`), labelData: candidate };
 }
