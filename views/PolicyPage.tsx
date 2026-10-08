@@ -8,19 +8,12 @@ import { TableOfContents } from "../components/blog/TableOfContents";
 import { Breadcrumbs } from "../components/ui/Breadcrumbs";
 import { Container } from "../components/ui/Container";
 import { policies } from "../lib/policies";
-import { usePageMeta } from "../hooks/usePageMeta";
 import type { TocItem } from "../lib/types/site";
 import { formatDate } from "../lib/utils/format";
 import { NotFound } from "./NotFound";
 
 export function PolicyPage({ slug }: { slug: string }) {
   const policy = policies.find((p) => p.slug === slug);
-
-  usePageMeta({
-    title: policy?.title ?? "Policy not found",
-    description: policy?.description ?? "This policy could not be found.",
-    path: `/policy/${slug ?? ""}`
-  });
 
   if (!policy) return <NotFound />;
 

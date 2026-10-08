@@ -14,17 +14,8 @@ import { JsonLd } from "../components/seo/JsonLd";
 import { Container } from "../components/ui/Container";
 import { homeFaqs } from "../lib/homeContent";
 import { siteConfig } from "../lib/siteConfig";
-import { usePageMeta } from "../hooks/usePageMeta";
-import { allHomeKeywords } from "../lib/utils/keywords";
 
 export function Home() {
-  usePageMeta({
-    title: `Free Shipping Tools for Online Sellers | ${siteConfig.name}`,
-    description: "Create 4×6 shipping labels and A4 or A5 packing slips with free ecommerce shipping tools for online sellers and small businesses.",
-    path: "/",
-    keywords: allHomeKeywords()
-  });
-
   const organization = {
     "@context": "https://schema.org",
     "@type": "Organization",

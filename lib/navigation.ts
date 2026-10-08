@@ -14,7 +14,7 @@ export const mainNav: NavItem[] = [
       {
         label: "Packing Slip Generator",
         href: "/packing-slip-generator",
-        description: "Create A4 or A5 itemized packing slips.",
+        description: "Create US Letter, A4 or A5 itemized packing slips.",
       },
     ],
   },
@@ -30,7 +30,7 @@ export const mainNav: NavItem[] = [
       {
         label: "How to create a packing slip",
         href: "/blog/how-to-create-a-packing-slip",
-        description: "Build a complete A4 or A5 packing slip.",
+        description: "Build a complete US Letter, A4 or A5 packing slip.",
       },
       {
         label: "Shipping label size guide",

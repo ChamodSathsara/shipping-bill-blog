@@ -9,18 +9,11 @@ import { PostCard } from "../components/blog/PostCard";
 import { PageHeader } from "../components/sections/PageHeader";
 import { Container } from "../components/ui/Container";
 import { blogCategories, POSTS_PER_PAGE } from "../lib/blog";
-import { usePageMeta } from "../hooks/usePageMeta";
 import type { BlogCategory } from "../lib/types/blog";
 import { getSortedPosts } from "../lib/utils/blog";
 import { cn } from "../lib/utils/cn";
 
 export function Blog() {
-  usePageMeta({
-    title: "Shipping Guides & Tips for Online Sellers",
-    description: "Practical guides on shipping labels, 4x6 thermal printers, packing slips and Etsy, eBay and Amazon shipping for small online sellers.",
-    path: "/blog"
-  });
-
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<BlogCategory | null>(null);
   const [page, setPage] = useState(1);

@@ -115,7 +115,13 @@ export async function renderPackingSlipPdf(data: PackingSlipData, id: string) {
   page!.drawLine({ start: { x: PAGE.margin, y: 55 }, end: { x: PAGE.width - PAGE.margin, y: 55 }, thickness: 0.6, color: COLORS.line });
   page!.drawText(fit(data.footerText, 95), { x: PAGE.margin, y: 38, size: 8, font: regular, color: COLORS.muted });
   drawRight(page!, `#${id} · ${rowIndex} item${rowIndex === 1 ? "" : "s"}`, PAGE.width - PAGE.margin, 38, 8, regular, COLORS.muted);
-  if (data.paperSize === "A5") {
+  if (data.paperSize === "A4") {
+    const scale = 595.28 / PAGE.width;
+    for (const pdfPage of pdf.getPages()) {
+      pdfPage.scaleContent(scale, scale);
+      pdfPage.setSize(595.28, 841.89);
+    }
+  } else if (data.paperSize === "A5") {
     const scale = 419.53 / PAGE.width;
     for (const pdfPage of pdf.getPages()) {
       pdfPage.scaleContent(scale, scale);

@@ -1,13 +1,13 @@
 // Site-wide constants. Change the brand name here and it updates everywhere.
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://shipkit.example.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://shipkit.net";
 
 export const siteConfig = {
   name: "ShipKit",
   tagline: "Free shipping tools for online sellers",
   description:
-  "Free, browser-based shipping tools for Etsy, eBay, Amazon, Shopify and Poshmark sellers: shipping label maker, packing slip generator and 4x6 label resizer.",
+  "Free shipping tools for Etsy, eBay, Amazon, Shopify and Poshmark sellers: a 4×6 shipping label maker and printable packing slip generator.",
   url: siteUrl,
-  email: "hello@shipkit.example.com",
+  email: "hello@shipkit.net",
   responseTime: "Within 1–2 business days",
   ogImage: `${siteUrl}/og-default.png`,
   social: {

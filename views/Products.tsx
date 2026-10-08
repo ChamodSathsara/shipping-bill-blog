@@ -7,7 +7,6 @@ import { CtaBanner } from "../components/sections/CtaBanner";
 import { PageHeader } from "../components/sections/PageHeader";
 import { Container } from "../components/ui/Container";
 import type { Product } from "../lib/types/product";
-import { usePageMeta } from "../hooks/usePageMeta";
 
 const products: Product[] = [
   {
@@ -38,7 +37,7 @@ const products: Product[] = [
     slug: "packing-slip-generator",
     name: "Packing Slip Generator",
     summary:
-      "Generate A4 or A5 packing slips with products, SKU, quantity and variant details.",
+      "Generate US Letter, A4 or A5 packing slips with products, SKU, quantity and variant details.",
     metaTitle: "Packing Slip Generator",
     metaDescription: "Create professional packing slips.",
     keywords: [
@@ -48,7 +47,7 @@ const products: Product[] = [
     ],
     status: "live",
     icon: "slip",
-    highlights: ["SKU and variants", "Shop details", "A4 and A5"],
+    highlights: ["SKU and variants", "Shop details", "US Letter, A4 and A5"],
     longDescription: "Build tidy packing slips for every parcel.",
     features: [],
     steps: [],
@@ -58,14 +57,6 @@ const products: Product[] = [
 ];
 
 export function Products() {
-  usePageMeta({
-    title: "Free Shipping Tools for Online Sellers",
-    description:
-      "Free shipping label maker and packing slip generator for Etsy, eBay, Amazon and Shopify sellers. No signup required.",
-    path: "/products",
-    keywords: products.flatMap((p) => p.keywords.slice(0, 2)),
-  });
-
   return (
     <>
       <PageHeader

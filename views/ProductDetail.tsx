@@ -12,17 +12,9 @@ import { Container } from "../components/ui/Container";
 import { SectionHeading } from "../components/ui/SectionHeading";
 import type { Product } from "../lib/types/product";
 import { siteConfig } from "../lib/siteConfig";
-import { usePageMeta } from "../hooks/usePageMeta";
 import { getPostsByProduct } from "../lib/utils/blog";
 
 export function ProductDetail({ product, relatedProduct }: { product: Product; relatedProduct: Product }) {
-
-  usePageMeta({
-    title: product?.metaTitle ?? "Product not found",
-    description: product?.metaDescription ?? "This product could not be found.",
-    path: `/${product.slug}`,
-    keywords: product?.keywords
-  });
 
   const posts = getPostsByProduct(product.slug).slice(0, 3);
   const isLive = product.status === "live";

@@ -4,7 +4,7 @@ import PackingSlipGeneratorPage from "@/app/products/packing-slip-generator/page
 export const metadata: Metadata = {
   title: "Free Packing Slip Generator – Create & Print Packing Slips",
   description:
-    "Create printable A4 or A5 packing slips online with SKU, quantity, variants and custom branding.",
+    "Create printable US Letter, A4 or A5 packing slips online with SKU, quantity, variants and custom branding.",
   keywords: [
     "packing slip generator",
     "free packing slip generator",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Free Packing Slip Generator – Create & Print Packing Slips",
     description:
-      "Create printable A4 or A5 packing slips online with SKU, quantity and branding.",
+      "Create printable US Letter, A4 or A5 packing slips online with SKU, quantity and branding.",
     url: "/packing-slip-generator",
     type: "website",
   },
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free Packing Slip Generator – Create & Print Packing Slips",
     description:
-      "Create and print professional A4 or A5 packing slips online for free.",
+      "Create and print professional US Letter, A4 or A5 packing slips online for free.",
   },
 };
 export default PackingSlipGeneratorPage;

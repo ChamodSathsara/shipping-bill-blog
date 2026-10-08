@@ -1,5 +1,5 @@
 export type ProductStatus = "coming-soon" | "live";
-export type ProductIconKey = "label" | "slip" | "resize";
+export type ProductIconKey = "label" | "slip";
 
 export interface ProductFeature {
   title: string;

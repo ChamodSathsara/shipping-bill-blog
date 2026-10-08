@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { AdSlot } from "../components/ads/AdSlot";
 import { ArticleBody } from "../components/blog/ArticleBody";
 import { AuthorBox } from "../components/blog/AuthorBox";
@@ -16,21 +17,12 @@ import { Breadcrumbs } from "../components/ui/Breadcrumbs";
 import { Container } from "../components/ui/Container";
 import type { Product } from "../lib/types/product";
 import { siteConfig } from "../lib/siteConfig";
-import { usePageMeta } from "../hooks/usePageMeta";
 import { getHeadings, getPostBySlug, getRelatedPosts } from "../lib/utils/blog";
 import { formatDate } from "../lib/utils/format";
 import { NotFound } from "./NotFound";
 
 export function BlogPost({ slug }: { slug: string }) {
   const post = slug ? getPostBySlug(slug) : undefined;
-
-  usePageMeta({
-    title: post?.title ?? "Article not found",
-    description: post?.description ?? "This article could not be found.",
-    path: `/blog/${slug ?? ""}`,
-    keywords: post?.tags,
-    type: "article",
-  });
 
   if (!post) return <NotFound />;
 
@@ -72,6 +64,13 @@ export function BlogPost({ slug }: { slug: string }) {
           }
         : undefined;
   const related = getRelatedPosts(post);
+  const strategicLinks = post.slug === "packing-slip-vs-shipping-label"
+    ? [{ label: "Create a free shipping label", href: "/shipping-label-maker" }, { label: "Generate a packing slip", href: "/packing-slip-generator" }]
+    : post.slug === "shipping-label-size-guide"
+      ? [{ label: "Create a 4×6 shipping label", href: "/shipping-label-maker" }, { label: "How to create a shipping label", href: "/blog/how-to-create-a-shipping-label" }]
+      : post.slug === "how-to-create-a-packing-slip"
+        ? [{ label: "Generate a packing slip", href: "/packing-slip-generator" }, { label: "Compare packing slips and shipping labels", href: "/blog/packing-slip-vs-shipping-label" }]
+        : [{ label: "Create a free shipping label", href: "/shipping-label-maker" }, { label: "See standard shipping label sizes", href: "/blog/shipping-label-size-guide" }];
   const url = `${siteConfig.url}/blog/${post.slug}`;
 
   const articleJsonLd = {
@@ -163,6 +162,12 @@ export function BlogPost({ slug }: { slug: string }) {
               slug={post.slug}
               product={product}
             />
+            <nav aria-label="Recommended next steps" className="mt-10 max-w-reading rounded-xl border border-border bg-muted/40 p-5">
+              <p className="font-display font-bold text-foreground">Recommended next steps</p>
+              <ul className="mt-3 space-y-2">
+                {strategicLinks.map((link) => <li key={link.href}><Link href={link.href} className="font-semibold text-primary hover:underline">{link.label}</Link></li>)}
+              </ul>
+            </nav>
 
             <ul className="mt-12 flex flex-wrap gap-2" aria-label="Tags">
               {post.tags.map((tag) => (

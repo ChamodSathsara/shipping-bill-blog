@@ -26,13 +26,13 @@ const products: Product[] = [
   {
     slug: "packing-slip-generator",
     name: "Packing Slip Generator",
-    summary: "Create A4 or A5 packing slips with SKU, quantities and variants.",
+    summary: "Create US Letter, A4 or A5 packing slips with SKU, quantities and variants.",
     metaTitle: "Packing Slip Generator",
     metaDescription: "Create printable packing slips.",
     keywords: ["packing slip generator", "packing slip template"],
     status: "live",
     icon: "slip",
-    highlights: ["SKU and variants", "Shop details", "A4 and A5 paper sizes"],
+    highlights: ["SKU and variants", "Shop details", "US Letter, A4 and A5 sizes"],
     longDescription: "Build tidy packing slips for every parcel.",
     features: [],
     steps: [],
@@ -48,7 +48,7 @@ export function ToolsSummary() {
         <SectionHeading
           id="tools-heading"
           title="Two free tools for every parcel you ship"
-          description="Create printable 4×6 shipping labels and professional A4 or A5 packing slips online for free."
+          description="Create printable 4×6 shipping labels and professional US Letter, A4 or A5 packing slips online for free."
         />
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">

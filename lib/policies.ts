@@ -1,16 +1,17 @@
 import type { Policy } from "../lib/types/site";
 
-// ⚠️ REPLACE WITH REAL POLICY — all text below is placeholder copy and is not legal advice.
 export const policies: Policy[] = [
 {
   slug: "privacy-policy",
   title: "Privacy Policy",
   description: "How ShipKit collects, uses and protects information, including cookies and Google AdSense advertising.",
   summary: "What we collect, how advertising cookies work and the choices you have.",
-  lastUpdated: "2026-10-01",
+  lastUpdated: "2026-10-08",
   sections: [
-  { id: "introduction", heading: "Introduction", paragraphs: ["This Privacy Policy explains how ShipKit (\"we\", \"us\") handles information when you visit our website and use our free shipping tools. Our tools process label and order data in your browser; we do not store it on our servers."] },
-  { id: "information-we-collect", heading: "Information we collect", paragraphs: ["We collect limited technical information such as browser type, device type, referring page and approximate location derived from your IP address. If you contact us or sign up for product updates, we collect the name and email address you provide."] },
+  { id: "introduction", heading: "Introduction", paragraphs: ["This Privacy Policy explains how ShipKit (\"we\", \"us\") handles information when you visit shipkit.net and use our shipping label and packing slip tools."] },
+  { id: "tool-data", heading: "Tool data we process", paragraphs: ["When you generate a document, the sender and recipient names, companies, postal addresses, phone numbers, order and reference numbers, package details, tracking text, line items, messages and any uploaded logo are sent securely to our server so it can create the requested PDF.", "This information is processed in server memory only. It is not written to the ShipKit database. The server discards the submitted fields and generated in-memory data when the response completes. Our intended retention period for tool data is therefore only the duration of the generation request.", "The generated PDF is returned directly to your browser. ShipKit does not retain a server copy. The browser may keep the downloaded file or a temporary object URL until you close or refresh the page, and you control any copy saved to your device."] },
+  { id: "why-we-process", heading: "Why we process tool data", paragraphs: ["We process tool data solely to validate your input, render the selected label or packing-slip template and return the PDF you requested. We do not use sender, recipient, order or item data for advertising, profiling or marketing."] },
+  { id: "information-we-collect", heading: "Other information we collect", paragraphs: ["Our hosting and security providers may process limited technical logs such as IP address, browser type, device type, requested URL and request time to deliver the site, diagnose failures and prevent abuse. If you contact us, we process the name, email address and message you provide so we can respond."] },
   { id: "cookies", heading: "Cookies and similar technologies", paragraphs: ["We use cookies and similar technologies to remember your preferences, understand site usage and display advertising. You can control cookies through your browser settings and our cookie banner. See our Cookie Policy for details."] },
   {
     id: "google-adsense",
@@ -27,17 +28,18 @@ export const policies: Policy[] = [
 
   },
   { id: "third-party-vendors", heading: "Third-party vendors", paragraphs: ["Other third-party vendors or ad networks may also use cookies to serve ads on our site. We do not control these cookies. Please consult their respective privacy policies for information about their practices and how to opt out."] },
-  { id: "how-we-use", heading: "How we use information", paragraphs: ["We use information to operate and improve the site, respond to messages, send product updates you request, prevent abuse and show advertising that keeps our tools free."] },
+  { id: "retention", heading: "Retention and deletion", paragraphs: ["Shipping-label and packing-slip form data is deleted from server memory when PDF generation completes and is not stored in our database. Technical logs are retained according to the retention settings of our hosting, security and analytics providers. Contact messages are retained only as long as needed to respond, maintain necessary records and meet legal obligations."] },
+  { id: "how-we-use", heading: "How we use information", paragraphs: ["We use non-document information to operate and secure the site, diagnose errors, understand aggregate site usage, respond to messages and display advertising when enabled."] },
   { id: "your-rights", heading: "Your choices and rights", paragraphs: ["Depending on where you live (for example under GDPR or CCPA), you may have rights to access, correct, delete or restrict use of your personal data. Contact us to exercise these rights."] },
   { id: "children", heading: "Children's privacy", paragraphs: ["Our site is not directed to children under 13 and we do not knowingly collect their personal information."] },
-  { id: "contact", heading: "Contact us", paragraphs: ["Questions about this policy? Email hello@shipkit.example.com."] }]
+  { id: "contact", heading: "Contact us", paragraphs: ["Questions about this policy or a deletion request? Email hello@shipkit.net."] }]
 
 }
 ,
 {
   slug: "terms-of-service",
   title: "Terms of Service",
-  description: "The terms that govern use of ShipKit's free shipping label, packing slip and label resizing tools.",
+  description: "The terms that govern use of ShipKit's free shipping label and packing slip tools.",
   summary: "The rules for using our free tools and website content.",
   lastUpdated: "2026-10-01",
   sections: [

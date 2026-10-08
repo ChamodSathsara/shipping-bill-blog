@@ -7,15 +7,8 @@ import { ContactForm } from "../components/contact/ContactForm";
 import { PageHeader } from "../components/sections/PageHeader";
 import { Container } from "../components/ui/Container";
 import { siteConfig } from "../lib/siteConfig";
-import { usePageMeta } from "../hooks/usePageMeta";
 
 export function ContactUs() {
-  usePageMeta({
-    title: "Contact Us",
-    description: `Questions, feedback or partnership ideas? Contact the ${siteConfig.name} team. We reply within 1–2 business days.`,
-    path: "/contact-us"
-  });
-
   return (
     <>
       <PageHeader

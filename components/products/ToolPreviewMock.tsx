@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { LockIcon, UploadIcon } from "lucide-react";
+import { LockIcon } from "lucide-react";
 import type { ProductIconKey } from "../../lib/types/product";
 
 function Field({ label, wide = false }: {label: string;wide?: boolean;}) {
@@ -46,17 +46,7 @@ function SlipForm() {
 
 }
 
-function ResizerDrop() {
-  return (
-    <div className="flex h-56 flex-col items-center justify-center rounded-lg border-2 border-dashed border-border text-center">
-      <UploadIcon className="h-6 w-6 text-muted-foreground" />
-      <p className="mt-2 text-sm font-medium text-foreground">Drop a label PDF here</p>
-      <p className="text-xs text-muted-foreground">UPS · FedEx · Amazon · eBay</p>
-    </div>);
-
-}
-
-const mocks: Record<ProductIconKey, () => React.ReactElement> = { label: LabelForm, slip: SlipForm, resize: ResizerDrop };
+const mocks: Record<ProductIconKey, () => React.ReactElement> = { label: LabelForm, slip: SlipForm };
 
 // Disabled-looking preview of the upcoming tool, shown while status === "coming-soon".
 export function ToolPreviewMock({ icon, name }: {icon: ProductIconKey;name: string;}) {

@@ -17,7 +17,6 @@ import { Container } from "../components/ui/Container";
 import { SectionHeading } from "../components/ui/SectionHeading";
 import { aboutStats, aboutValues } from "../lib/aboutContent";
 import { siteConfig } from "../lib/siteConfig";
-import { usePageMeta } from "../hooks/usePageMeta";
 
 const valueIcons = {
   free: HeartHandshakeIcon,
@@ -39,17 +38,11 @@ const products = [
     icon: "slip" as const,
     status: "live" as const,
     longDescription:
-      "Build A4 or A5 packing slips with SKU, quantities and variants.",
+      "Build US Letter, A4 or A5 packing slips with SKU, quantities and variants.",
   },
 ];
 
 export function AboutUs() {
-  usePageMeta({
-    title: "About Us – Free Tools Built by Sellers",
-    description: `${siteConfig.name} builds free, private shipping tools for small online sellers. Learn about our mission, story and the values behind our tools.`,
-    path: "/about-us",
-  });
-
   return (
     <>
       <PageHeader
@@ -84,7 +77,7 @@ export function AboutUs() {
               {siteConfig.name} started at a kitchen table covered in poly
               mailers. Our founders were running a small Etsy shop and an eBay
               resale side business, and every week they lost hours fighting
-              full-page carrier PDFs, cramped marketplace packing slips and
+              inconsistent custom labels, cramped marketplace packing slips and
               label tools that wanted a subscription.
             </p>
             <p>
@@ -158,7 +151,7 @@ export function AboutUs() {
             {products.map((p) => (
               <li key={p.slug}>
                 <Link
-                  href={`/products/${p.slug}`}
+                  href={`/${p.slug}`}
                   className="group flex items-center gap-4 py-5 transition-colors duration-150 hover:bg-card sm:px-3"
                 >
                   <ProductIcon icon={p.icon} />
@@ -187,7 +180,7 @@ export function AboutUs() {
       <CtaBanner
         title="See what we're building"
         description="Browse the tools, or tell us what would save you the most time."
-        primary={{ label: "Explore Free Tools", href: "/products" }}
+        primary={{ label: "Create a shipping label", href: "/shipping-label-maker" }}
         secondary={{ label: "Contact us", href: "/contact-us" }}
       />
     </>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { CookieIcon } from "lucide-react";
@@ -12,6 +12,17 @@ type Consent = "pending" | "accepted" | "declined";
 // (e.g. Google Consent Mode v2 or a certified CMP) before enabling AdSense.
 export function CookieBanner() {
   const [consent, setConsent] = useState<Consent>("pending");
+
+  useEffect(() => {
+    const saved = localStorage.getItem("shipkit-cookie-consent");
+    if (saved === "accepted" || saved === "declined") setConsent(saved);
+  }, []);
+
+  const choose = (value: Exclude<Consent, "pending">) => {
+    localStorage.setItem("shipkit-cookie-consent", value);
+    setConsent(value);
+    window.dispatchEvent(new Event("shipkit-consent-change"));
+  };
 
   return (
     <AnimatePresence>
@@ -36,10 +47,10 @@ export function CookieBanner() {
               </p>
             </div>
             <div className="flex shrink-0 gap-2">
-              <button type="button" onClick={() => setConsent("declined")} className={buttonVariants({ variant: "secondary", size: "md", className: "flex-1 md:flex-none" })}>
+              <button type="button" onClick={() => choose("declined")} className={buttonVariants({ variant: "secondary", size: "md", className: "flex-1 md:flex-none" })}>
                 Decline
               </button>
-              <button type="button" onClick={() => setConsent("accepted")} className={buttonVariants({ size: "md", className: "flex-1 md:flex-none" })}>
+              <button type="button" onClick={() => choose("accepted")} className={buttonVariants({ size: "md", className: "flex-1 md:flex-none" })}>
                 Accept all
               </button>
             </div>

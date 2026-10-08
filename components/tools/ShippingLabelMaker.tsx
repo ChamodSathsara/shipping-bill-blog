@@ -25,7 +25,7 @@ import type { BulkValidationRow } from "@/lib/bulk-labels";
 import { LabelPreview } from "@/components/LabelPreview";
 import { CountrySelect } from "@/components/ui/CountrySelect";
 
-type Done = { id: string; pdfUrl: string; quantity: number };
+type Done = { id: string; pdfUrl: string; filename: string; quantity: number };
 type Errors = Record<string, string>;
 const control =
   "mt-1.5 min-h-11 w-full rounded-lg border border-border bg-background px-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20";
@@ -151,8 +151,11 @@ export function ShippingLabelMaker() {
       });
       const result = await response.json();
       if (!response.ok) throw new Error(result.message);
-      setDone(result);
-      toast.success("Your label is ready.");
+      const bytes = Uint8Array.from(atob(result.pdfBase64), (c) => c.charCodeAt(0));
+      const pdfUrl = URL.createObjectURL(new Blob([bytes], { type: "application/pdf" }));
+      if (done?.pdfUrl) URL.revokeObjectURL(done.pdfUrl);
+      setDone({ id: result.id, pdfUrl, filename: result.filename, quantity: result.quantity });
+      toast.success("Your label is ready. Shipment data was removed after generation.");
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Label generation failed");
     } finally {
@@ -421,19 +424,22 @@ export function ShippingLabelMaker() {
               Open bulk generator
             </button>
             <p className="mt-3 text-xs leading-5 text-muted-foreground">
-              Custom printable label only. Postage and official carrier tracking
-              are not included.
+              Creates printable custom shipping labels. It does not purchase postage
+              or generate official carrier postage labels.
             </p>
             {done && (
               <div className="mt-5 border-t border-border pt-5">
                 <p className="mb-4 flex items-center gap-2 text-sm font-semibold text-primary">
                   <CheckIcon className="h-4 w-4" />
-                  Label #{done.id} is ready
+                  Your label is ready
+                </p>
+                <p className="mb-4 text-xs leading-5 text-muted-foreground">
+                  Your shipment data was used only to generate this PDF and was removed from server memory when generation completed.
                 </p>
                 <div className="grid gap-2 sm:grid-cols-3 xl:grid-cols-1 2xl:grid-cols-3">
                   <a
                     href={done.pdfUrl}
-                    target="_blank"
+                    download={done.filename}
                     className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-3 text-sm font-bold text-primary-foreground"
                   >
                     <DownloadIcon className="h-4 w-4" />
@@ -496,7 +502,7 @@ function BulkSpreadsheet({templateId,baseData}:{templateId:TemplateId;baseData:L
  const updateCell=(id:string,col:SheetColumn,value:string)=>setRows(v=>v.map(r=>r.id===id?{...r,data:col.set(r.data,value)}:r));
  const selected=rows.filter(r=>r.selected),validSelected=selected.filter(r=>labelDataSchema.safeParse(r.data).success);
  const upload=async(file:File)=>{setBusy(true);try{const form=new FormData();form.set("file",file);const response=await fetch("/api/shipping-labels/bulk/validate",{method:"POST",body:form});const result=await response.json();if(!response.ok)throw new Error(result.message);const imported=(result.rows as BulkValidationRow[]).filter(r=>r.labelData).map(r=>({id:crypto.randomUUID(),data:r.labelData!,selected:true}));setRows(v=>[...v,...imported]);toast.success(`${imported.length} Excel rows imported.`)}catch(e){toast.error(e instanceof Error?e.message:"Upload failed")}finally{setBusy(false)}};
- const generate=async()=>{if(!selected.length){toast.error("Select at least one row.");return}if(validSelected.length!==selected.length){toast.error("Fix invalid selected rows before generating.");return}setBusy(true);try{const response=await fetch("/api/shipping-labels/bulk/generate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({templateId,labels:validSelected.map(r=>r.data)})});const result=await response.json();if(!response.ok)throw new Error(result.message);const bytes=Uint8Array.from(atob(result.pdfBase64),(c)=>c.charCodeAt(0));const url=URL.createObjectURL(new Blob([bytes],{type:"application/pdf"}));if(pdfUrl)URL.revokeObjectURL(pdfUrl);setPdfUrl(url);toast.success(`${result.generated} labels generated.`)}catch(e){toast.error(e instanceof Error?e.message:"Bulk generation failed")}finally{setBusy(false)}};
+ const generate=async()=>{if(!selected.length){toast.error("Select at least one row.");return}if(validSelected.length!==selected.length){toast.error("Fix invalid selected rows before generating.");return}setBusy(true);try{const response=await fetch("/api/shipping-labels/bulk/generate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({templateId,labels:validSelected.map(r=>r.data)})});const result=await response.json();if(!response.ok)throw new Error(result.message);const bytes=Uint8Array.from(atob(result.pdfBase64),(c)=>c.charCodeAt(0));const url=URL.createObjectURL(new Blob([bytes],{type:"application/pdf"}));if(pdfUrl)URL.revokeObjectURL(pdfUrl);setPdfUrl(url);toast.success(`${result.generated} labels generated. Shipment data was removed after generation.`)}catch(e){toast.error(e instanceof Error?e.message:"Bulk generation failed")}finally{setBusy(false)}};
  const allSelected=rows.length>0&&rows.every(r=>r.selected);
  return <section id="bulk-labels" className="scroll-mt-24 rounded-2xl border border-border bg-surface p-5 sm:p-8">
   <div className="flex flex-wrap items-start justify-between gap-4"><div><p className="flex items-center gap-2 text-sm font-bold text-primary"><FileSpreadsheetIcon className="h-4 w-4"/>Bulk generate</p><h2 className="mt-1 font-display text-2xl font-extrabold">Shipping label spreadsheet</h2><p className="mt-2 text-sm text-muted-foreground">Add and edit rows here, or import an existing Excel sheet. Select the rows you want to generate.</p></div><div className="flex flex-wrap gap-2"><a href="/api/shipping-labels/bulk/template" className="inline-flex min-h-11 items-center gap-2 rounded-lg border bg-card px-4 text-sm font-bold"><DownloadIcon className="h-4 w-4"/>Excel template</a><label className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border bg-card px-4 text-sm font-bold"><UploadIcon className="h-4 w-4"/>Import Excel<input type="file" accept=".xlsx" className="sr-only" disabled={busy} onChange={e=>{const f=e.target.files?.[0];if(f)void upload(f);e.currentTarget.value=""}}/></label><button onClick={addRow} className="min-h-11 rounded-lg bg-primary px-4 text-sm font-bold text-primary-foreground">+ Add row</button></div></div>
@@ -555,7 +561,7 @@ function BulkSection({ templateId }: { templateId: TemplateId }) {
       );
       if (pdfUrl) URL.revokeObjectURL(pdfUrl);
       setPdfUrl(url);
-      toast.success(`${result.generated} labels generated.`);
+      toast.success(`${result.generated} labels generated. Shipment data was removed after generation.`);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Bulk generation failed");
     } finally {

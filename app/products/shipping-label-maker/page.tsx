@@ -56,8 +56,8 @@ const shippingLabelMaker = {
       description: "Save a high-resolution PDF or print directly.",
     },
     {
-      title: "Private by design",
-      description: "Label information stays in your browser.",
+      title: "No document-data retention",
+      description: "Shipment data is processed in server memory only and discarded after the PDF is generated.",
     },
   ],
   steps: [
@@ -80,7 +80,7 @@ const shippingLabelMaker = {
       heading: "A free shipping label maker for small sellers",
       paragraphs: [
         "Use this online shipping label maker to create a shipping label online without subscribing to a full shipping platform. The shipping label creator is designed for marketplace sellers, replacement shipments and orders handled outside a marketplace checkout.",
-        "The workflow runs in the browser, so there is no account to create and customer address information stays on your device.",
+        "There is no account to create. Shipment information is sent securely for PDF generation, is not saved to our database and is discarded from server memory when generation completes.",
       ],
     },
     {
@@ -101,6 +101,22 @@ const shippingLabelMaker = {
         "No. It creates the printable address label; postage must be purchased separately.",
     },
     {
+      question: "What size is a shipping label?",
+      answer: "The standard parcel-label format is 4 × 6 inches, which is the fixed output size used by this tool.",
+    },
+    {
+      question: "Can I print 4 × 6 labels?",
+      answer: "Yes. Download the PDF or open the system print dialog and print at 100% or Actual Size on 4 × 6 media.",
+    },
+    {
+      question: "Does this create postage?",
+      answer: "No. ShipKit creates a custom printable label layout but does not purchase postage or create an official carrier postage label.",
+    },
+    {
+      question: "Can I use a thermal printer?",
+      answer: "Yes. The PDF is sized for common 4 × 6 thermal printers, including Rollo, Munbyn and Zebra devices.",
+    },
+    {
       question: "Which printers are supported?",
       answer:
         "It supports common 4x6 thermal printers and standard inkjet or laser printers.",
@@ -111,7 +127,7 @@ const shippingLabelMaker = {
     },
     {
       question: "Is address data stored?",
-      answer: "No. Label details are processed in your browser.",
+      answer: "No. Label details are processed temporarily in server memory to create the PDF and are discarded when generation completes.",
     },
   ],
 } satisfies Product;

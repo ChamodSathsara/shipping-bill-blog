@@ -6,7 +6,6 @@ import { ArrowRightIcon, CookieIcon, ScaleIcon, ShieldCheckIcon } from "lucide-r
 import { PageHeader } from "../components/sections/PageHeader";
 import { Container } from "../components/ui/Container";
 import { policies } from "../lib/policies";
-import { usePageMeta } from "../hooks/usePageMeta";
 import { formatDate } from "../lib/utils/format";
 
 const icons: Record<string, typeof ShieldCheckIcon> = {
@@ -16,12 +15,6 @@ const icons: Record<string, typeof ShieldCheckIcon> = {
 };
 
 export function PolicyHub() {
-  usePageMeta({
-    title: "Policies – Privacy, Terms & Cookies",
-    description: "Read ShipKit's Privacy Policy, Terms of Service and Cookie Policy, including how Google AdSense advertising and cookies are used.",
-    path: "/policy"
-  });
-
   return (
     <>
       <PageHeader

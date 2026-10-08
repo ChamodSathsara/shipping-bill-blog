@@ -269,7 +269,7 @@ export function PackingSlipGenerator() {
       const result = await r.json();
       if (!r.ok) throw new Error(result.message);
       setDone(result);
-      toast.success("Packing slip is ready.");
+      toast.success("Packing slip is ready. Order data was removed after generation.");
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Generation failed");
     } finally {
@@ -335,9 +335,10 @@ export function PackingSlipGenerator() {
                   className={input}
                   value={d.paperSize}
                   onChange={(e) =>
-                    update("paperSize", e.target.value as "A4" | "A5")
+                    update("paperSize", e.target.value as "LETTER" | "A4" | "A5")
                   }
                 >
+                  <option value="LETTER">US Letter (8.5 × 11 in)</option>
                   <option value="A4">A4 (210 × 297 mm)</option>
                   <option value="A5">A5 (148 × 210 mm)</option>
                 </select>
@@ -506,7 +507,11 @@ export function PackingSlipGenerator() {
               {busy ? "Generating…" : "Generate packing slip"}
             </button>
             {done && (
-              <div className="mt-4 grid gap-2 sm:grid-cols-3 xl:grid-cols-1 2xl:grid-cols-3">
+              <div className="mt-4">
+                <p className="mb-3 text-xs leading-5 text-muted-foreground">
+                  Your order and address data was used only to generate this PDF and was removed from server memory when generation completed.
+                </p>
+                <div className="grid gap-2 sm:grid-cols-3 xl:grid-cols-1 2xl:grid-cols-3">
                 <button
                   onClick={() => {
                     const u = blob();
@@ -542,6 +547,7 @@ export function PackingSlipGenerator() {
                   <RotateCcwIcon className="h-4 w-4" />
                   New
                 </button>
+                </div>
               </div>
             )}
           </div>

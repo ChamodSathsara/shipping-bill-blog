@@ -52,7 +52,7 @@ export function ProductsTable({ products }: {products: Product[];}) {
                 <td className="max-w-[16rem] px-5 py-5"><KeywordList keywords={p.keywords} /></td>
                 <td className="px-5 py-5"><StatusBadge status={p.status} /></td>
                 <td className="px-5 py-5 text-right">
-                  <Link href={`/products/${p.slug}`} className={buttonVariants({ variant: "secondary", size: "sm" })} aria-label={`View ${p.name}`}>
+                  <Link href={`/${p.slug}`} className={buttonVariants({ variant: "secondary", size: "sm" })} aria-label={`View ${p.name}`}>
                     View
                     <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
                   </Link>
@@ -79,7 +79,7 @@ export function ProductsTable({ products }: {products: Product[];}) {
             </div>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">{p.summary}</p>
             <div className="mt-4"><KeywordList keywords={p.keywords} /></div>
-            <Link href={`/products/${p.slug}`} className={buttonVariants({ variant: "secondary", size: "md", className: "mt-5 w-full" })}>
+            <Link href={`/${p.slug}`} className={buttonVariants({ variant: "secondary", size: "md", className: "mt-5 w-full" })}>
               View {p.name}
             </Link>
           </li>

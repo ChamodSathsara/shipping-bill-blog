@@ -4,7 +4,7 @@ import type { Author, BlogPost, CategoryInfo } from "../lib/types/blog";
  * BLOG CONTENT GUIDANCE
  * ---------------------------------------------------------------------------
  * - Each post should target 3,000+ words of genuinely useful content.
- * - Cover how to use our tools (label maker, packing slip generator, resizer)
+ * - Cover how to use our tools (shipping label maker and packing slip generator)
  *   plus related topics: shipping tips, label sizes, thermal printers,
  *   Etsy/eBay/Amazon shipping, carrier comparisons and packing best practices.
  * - Content is an array of blocks. Use "h2"/"h3" for headings (they build the
@@ -223,9 +223,9 @@ export const blogPosts: BlogPost[] = [
     title: "How to Create a Packing Slip – Step-by-Step Guide",
     slug: "how-to-create-a-packing-slip",
     description:
-      "Create an A4 or A5 packing slip with order details, line items, branding, customer messages and print-ready PDF output.",
+      "Create a US Letter, A4 or A5 packing slip with order details, line items, branding, customer messages and print-ready PDF output.",
     image: "/blog/how-to-create-packing-slip.png",
-    imageAlt: "A4 and A5 packing slips on an ecommerce fulfillment desk",
+    imageAlt: "US Letter, A4 and A5 packing slips on an ecommerce fulfillment desk",
     date: "2026-09-05",
     updatedAt: "2026-09-20",
     category: "Packing & Fulfillment",
@@ -298,7 +298,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "Step 1 – Choose a Packing Slip Template" },
       {
         type: "p",
-        text: "Open the Packing Slip Generator, choose a visual template, and select A4 or A5 paper.",
+        text: "Open the Packing Slip Generator, choose a visual template, and use the default US Letter size or select A4 or A5 paper.",
       },
       {
         type: "image",
@@ -315,8 +315,8 @@ export const blogPosts: BlogPost[] = [
       {
         type: "image",
         src: "/blog/screenshots/packing-order.png",
-        alt: "Packing slip order information and A4 A5 paper size selector",
-        caption: "Enter order information and select A4 or A5 paper.",
+        alt: "Packing slip order information and US Letter A4 A5 paper size selector",
+        caption: "Enter order information and select US Letter, A4 or A5 paper.",
       },
       { type: "h2", text: "Step 3 – Enter Sender Information" },
       {
@@ -377,7 +377,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "Step 8 – Download or Print" },
       {
         type: "p",
-        text: "Generate the A4 or A5 PDF, download a copy or open the system print dialog.",
+        text: "Generate the US Letter, A4 or A5 PDF, download a copy or open the system print dialog.",
       },
       {
         type: "image",
@@ -529,7 +529,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "Example Shipping Workflow" },
       {
         type: "p",
-        text: "Create the 4×6 shipping label for the outside, generate an A4 or A5 packing slip for the inside, verify the item quantities, seal the parcel and scan the label before dispatch.",
+        text: "Create the 4×6 shipping label for the outside, generate a US Letter, A4 or A5 packing slip for the inside, verify the item quantities, seal the parcel and scan the label before dispatch.",
       },
       // ── END OF ARTICLE ──
     ],
