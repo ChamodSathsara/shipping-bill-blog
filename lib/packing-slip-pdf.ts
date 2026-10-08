@@ -1,7 +1,7 @@
 import { PDFDocument, PDFPage, PDFFont, StandardFonts, rgb } from "pdf-lib";
 import type { PackingSlipData } from "./packing-slip";
 
-const PAGE = { width: 612, height: 792, margin: 42 };
+const PAGE = { width: 595.28, height: 841.89, margin: 42 };
 const COLORS = {
   ink: rgb(0.02, 0.04, 0.07),
   muted: rgb(0.36, 0.4, 0.45),
@@ -53,7 +53,7 @@ export async function renderPackingSlipPdf(data: PackingSlipData, id: string) {
     const modern = data.templateCode === "MODERN";
     if (modern) page.drawRectangle({ x: 0, y: PAGE.height - 12, width: PAGE.width, height: 12, color: COLORS.teal });
 
-    const top = modern ? 730 : 742;
+    const top = modern ? PAGE.height - 62 : PAGE.height - 50;
     if (logo) {
       const scale = Math.min(120 / logo.width, 52 / logo.height);
       page.drawImage(logo, { x: PAGE.margin, y: top - 40, width: logo.width * scale, height: logo.height * scale });
@@ -115,5 +115,12 @@ export async function renderPackingSlipPdf(data: PackingSlipData, id: string) {
   page!.drawLine({ start: { x: PAGE.margin, y: 55 }, end: { x: PAGE.width - PAGE.margin, y: 55 }, thickness: 0.6, color: COLORS.line });
   page!.drawText(fit(data.footerText, 95), { x: PAGE.margin, y: 38, size: 8, font: regular, color: COLORS.muted });
   drawRight(page!, `#${id} · ${rowIndex} item${rowIndex === 1 ? "" : "s"}`, PAGE.width - PAGE.margin, 38, 8, regular, COLORS.muted);
+  if (data.paperSize === "A5") {
+    const scale = 419.53 / PAGE.width;
+    for (const pdfPage of pdf.getPages()) {
+      pdfPage.scaleContent(scale, scale);
+      pdfPage.setSize(419.53, 595.28);
+    }
+  }
   return Buffer.from(await pdf.save()).toString("base64");
 }

@@ -41,7 +41,7 @@ export const labelDataSchema = z.object({
   }),
   format: z.object({
     serviceLevel: z.enum(["STANDARD", "EXPRESS", "OVERNIGHT", "ECONOMY", "PRIORITY", "CUSTOM"]),
-    labelFormat: z.enum(["4X6", "3X4"]),
+    labelFormat: z.literal("4X6"),
     shipDate: z.string().date("Enter a valid ship date"),
     quantity: z.coerce.number().int().min(1).max(100),
   }),
