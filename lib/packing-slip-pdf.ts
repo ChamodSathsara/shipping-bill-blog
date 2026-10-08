@@ -71,7 +71,10 @@ export async function renderPackingSlipPdf(data: PackingSlipData, id: string) {
     page.drawLine({ start: { x: PAGE.margin, y: dividerY }, end: { x: PAGE.width - PAGE.margin, y: dividerY }, thickness: 1.4, color: COLORS.ink });
     drawAddress(page, regular, bold, "FROM", data.sender, PAGE.margin, dividerY - 22);
     drawAddress(page, regular, bold, "SHIP TO", data.recipient, 326, dividerY - 22);
-    y = dividerY - 142;
+    // Reserve enough vertical space for the longest supported address block
+    // (name + company + two address lines + city/state/ZIP + country + phone).
+    // This keeps the table header clear of the final phone line.
+    y = dividerY - 172;
 
     const headerColor = data.templateCode === "MINIMAL" ? COLORS.pale : COLORS.teal;
     const headerText = data.templateCode === "MINIMAL" ? COLORS.ink : COLORS.white;
@@ -94,7 +97,10 @@ export async function renderPackingSlipPdf(data: PackingSlipData, id: string) {
     if (data.showVariant) page!.drawText(fit(item.variant || "—", 16), { x: 410, y, size: 9, font: regular, color: COLORS.ink });
     if (data.showQuantity) drawRight(page!, String(item.quantity), PAGE.width - PAGE.margin - 10, y, 9, regular);
     y -= rowHeight;
-    page!.drawLine({ start: { x: PAGE.margin, y: y + 6 }, end: { x: PAGE.width - PAGE.margin, y: y + 6 }, thickness: 0.45, color: COLORS.line });
+    // Place the separator halfway between adjacent text baselines so it never
+    // crosses through the next row's glyphs.
+    const separatorY = y + rowHeight / 2;
+    page!.drawLine({ start: { x: PAGE.margin, y: separatorY }, end: { x: PAGE.width - PAGE.margin, y: separatorY }, thickness: 0.55, color: COLORS.line });
     rowIndex += 1;
   }
 
