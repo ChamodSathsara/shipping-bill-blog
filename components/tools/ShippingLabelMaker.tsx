@@ -23,6 +23,7 @@ import {
 import { cn } from "@/lib/utils/cn";
 import type { BulkValidationRow } from "@/lib/bulk-labels";
 import { LabelPreview } from "@/components/LabelPreview";
+import { CountrySelect } from "@/components/ui/CountrySelect";
 
 type Done = { id: string; pdfUrl: string; quantity: number };
 type Errors = Record<string, string>;
@@ -864,14 +865,13 @@ function Address({
           error={errors[`${section}.zipCode`]}
           onChange={(v) => update(section, "zipCode", v)}
         />
-        <TextField
-          label="Country code *"
-          value={a.country}
-          error={errors[`${section}.country`]}
-          onChange={(v) =>
-            update(section, "country", v.toUpperCase().slice(0, 2))
-          }
-        />
+        <Field label="Country *" error={errors[`${section}.country`]}>
+          <CountrySelect
+            className={control}
+            value={a.country}
+            onChange={(v) => update(section, "country", v)}
+          />
+        </Field>
         <TextField
           label="Phone"
           value={a.phone}

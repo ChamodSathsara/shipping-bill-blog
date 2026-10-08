@@ -19,6 +19,7 @@ import {
   type PackingTemplateCode,
 } from "@/lib/packing-slip";
 import { cn } from "@/lib/utils/cn";
+import { CountrySelect } from "@/components/ui/CountrySelect";
 
 type Errors = Record<string, string>;
 type Done = { id: string; pdfBase64: string; filename: string };
@@ -600,7 +601,6 @@ function AddressForm({
             ["city", "City *"],
             ["state", "State *"],
             ["zipCode", "ZIP *"],
-            ["country", "Country code *"],
             ["phone", "Phone"],
           ] as const
         ).map(([k, l]) => (
@@ -609,15 +609,16 @@ function AddressForm({
             label={l}
             value={a[k]}
             error={errors[`${section}.${k}`]}
-            onChange={(v) =>
-              change(
-                section,
-                k,
-                k === "country" ? v.toUpperCase().slice(0, 2) : v,
-              )
-            }
+            onChange={(v) => change(section, k, v)}
           />
         ))}
+        <Field label="Country *" error={errors[`${section}.country`]}>
+          <CountrySelect
+            className={input}
+            value={a.country}
+            onChange={(v) => change(section, "country", v)}
+          />
+        </Field>
       </div>
     </Box>
   );
