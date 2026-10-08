@@ -11,7 +11,8 @@ export const siteConfig = {
   responseTime: "Within 1–2 business days",
   ogImage: `${siteUrl}/og-default.png`,
   social: {
-    linkedin: "https://www.linkedin.com/in/chamodsathsara"
+    linkedin: "https://www.linkedin.com/in/chamodsathsara",
+    facebook: "https://www.facebook.com/profile.php?id=61595358955258"
   },
   // Google AdSense. ANABLE_ADSENSE controls whether ad areas are visible at all.
   adsense: {

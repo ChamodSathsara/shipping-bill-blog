@@ -27,6 +27,14 @@ export function Footer() {
           >
             Chamod Sathsara on LinkedIn
           </a>
+          <a
+            href={siteConfig.social.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 block text-sm font-medium text-primary hover:underline"
+          >
+            ShipKit on Facebook
+          </a>
         </div>
         {footerColumns.map((col) =>
         <nav key={col.title} aria-label={col.title}>
