@@ -19,38 +19,41 @@ export function Navbar() {
   const close = useCallback(() => setMobileOpen(false), []);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-md">
-      <Container className="flex h-16 items-center justify-between gap-4">
-        <Logo />
-        <nav aria-label="Main" className="hidden lg:block">
-          <ul className="flex items-center gap-0.5">
-            {mainNav.map((item) =>
-            <li key={item.href}>
-                {item.children ?
-              <NavDropdown item={item} /> :
+    <>
+      <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-md">
+        <Container className="flex h-16 items-center justify-between gap-2">
+          <Logo className="min-w-0 shrink" />
+          <nav aria-label="Main" className="hidden lg:block">
+            <ul className="flex items-center gap-0.5">
+              {mainNav.map((item) =>
+              <li key={item.href}>
+                  {item.children ?
+                <NavDropdown item={item} /> :
 
-              <Link href={item.href} className={navLinkClass(item.href === "/" ? pathname === "/" : pathname.startsWith(item.href))}>
-                    {item.label}
-                  </Link>
-              }
-              </li>
-            )}
-          </ul>
-        </nav>
-        <div className="flex items-center gap-1">
-          <ThemeToggle />
-          <button
-            type="button"
-            className={buttonVariants({ variant: "ghost", size: "icon", className: "lg:hidden" })}
-            aria-label="Open menu"
-            aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen(true)}>
-            
-            <MenuIcon className="h-5 w-5" aria-hidden="true" />
-          </button>
-        </div>
-      </Container>
+                <Link href={item.href} className={navLinkClass(item.href === "/" ? pathname === "/" : pathname.startsWith(item.href))}>
+                      {item.label}
+                    </Link>
+                }
+                </li>
+              )}
+            </ul>
+          </nav>
+          <div className="flex shrink-0 items-center gap-1">
+            <ThemeToggle />
+            <button
+              type="button"
+              className={buttonVariants({ variant: "ghost", size: "icon", className: "lg:hidden" })}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-controls="mobile-navigation"
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen((current) => !current)}>
+
+              <MenuIcon className="h-5 w-5" aria-hidden="true" />
+            </button>
+          </div>
+        </Container>
+      </header>
       <MobileNav open={mobileOpen} onClose={close} />
-    </header>);
+    </>);
 
 }

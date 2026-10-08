@@ -33,7 +33,7 @@ export function MobileNav({ open, onClose }: {open: boolean;onClose: () => void;
   return (
     <AnimatePresence>
       {open &&
-      <div className="fixed inset-0 z-50 lg:hidden">
+      <div id="mobile-navigation" className="fixed inset-0 z-50 h-dvh lg:hidden">
           <motion.div
           className="absolute inset-0 bg-foreground/40"
           initial={{ opacity: 0 }}
@@ -47,19 +47,19 @@ export function MobileNav({ open, onClose }: {open: boolean;onClose: () => void;
           role="dialog"
           aria-modal="true"
           aria-label="Site navigation"
-          className="absolute inset-y-0 right-0 flex w-[min(88vw,22rem)] flex-col bg-background shadow-xl"
+          className="absolute inset-y-0 right-0 flex h-dvh w-full max-w-[22rem] flex-col bg-background shadow-xl sm:w-[88vw]"
           initial={{ x: "100%" }}
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
           transition={{ duration: 0.26, ease: [0.23, 1, 0.32, 1] }}>
           
-            <div className="flex h-16 items-center justify-between border-b border-border px-4">
+            <div className="flex min-h-16 items-center justify-between border-b border-border px-4 pt-[env(safe-area-inset-top)]">
               <Logo />
               <button type="button" onClick={onClose} aria-label="Close menu" className={buttonVariants({ variant: "ghost", size: "icon" })} autoFocus>
                 <XIcon className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
-            <nav aria-label="Mobile" className="flex-1 overflow-y-auto p-4">
+            <nav aria-label="Mobile" className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
               <ul className="space-y-1">
                 {mainNav.map((item) =>
               <li key={item.href}>
