@@ -130,35 +130,85 @@ export const blogPosts: BlogPost[] = [
         type: "p",
         text: "Open the free Shipping Label Maker and choose the Marketplace, Minimal Mono, Clean Hierarchy, Simple List or Standard Barcode 4×6 template.",
       },
+      {
+        type: "image",
+        src: "/blog/screenshots/shipping-templates.png",
+        alt: "Shipping Label Maker template selection showing five 4x6 layouts",
+        caption: "Choose one of the five 4×6 shipping label templates.",
+      },
       { type: "h2", text: "Step 2 – Enter Sender Information" },
       {
         type: "p",
         text: "Add the return name, company, street address, city, state, postal code, country and phone number.",
+      },
+      {
+        type: "image",
+        src: "/blog/screenshots/shipping-sender.png",
+        alt: "Sender information form in the Shipping Label Maker",
+        caption: "Enter the sender or return-address information.",
       },
       { type: "h2", text: "Step 3 – Enter Recipient Information" },
       {
         type: "p",
         text: "Enter the delivery address carefully and confirm the postal code before generating the label.",
       },
+      {
+        type: "image",
+        src: "/blog/screenshots/shipping-recipient.png",
+        alt: "Recipient address form in the Shipping Label Maker",
+        caption: "Add the recipient’s complete delivery address.",
+      },
       { type: "h2", text: "Step 4 – Add Package Details" },
       {
         type: "p",
         text: "Choose the package type and enter its weight and dimensions using the correct units.",
+      },
+      {
+        type: "image",
+        src: "/blog/screenshots/shipping-package.png",
+        alt: "Package type weight and dimension fields",
+        caption: "Enter the parcel type, weight and dimensions.",
       },
       { type: "h2", text: "Step 5 – Add Carrier and Tracking Information" },
       {
         type: "p",
         text: "Select the carrier and service level, then enter the tracking and reference numbers used to create the Code 128 barcode.",
       },
+      {
+        type: "image",
+        src: "/blog/screenshots/shipping-format.png",
+        alt: "Shipping format carrier marketplace and service controls",
+        caption: "Choose the carrier, marketplace, service and ship date.",
+      },
+      {
+        type: "image",
+        src: "/blog/screenshots/shipping-tracking.png",
+        alt: "Tracking reference heading and handling instruction fields",
+        caption:
+          "Add the tracking number, reference and handling instructions.",
+      },
       { type: "h2", text: "Step 6 – Preview Your Shipping Label" },
       {
         type: "p",
         text: "Check every address line and scan the preview barcode before printing a full batch.",
       },
+      {
+        type: "image",
+        src: "/blog/screenshots/shipping-preview.png",
+        alt: "Live preview of a completed 4x6 shipping label",
+        caption: "Review the live 4×6 preview before generating the PDF.",
+      },
       { type: "h2", text: "Step 7 – Download or Print Your Label" },
       {
         type: "p",
         text: "Generate the PDF, download it or open the system print dialog and print at 100% on 4×6 media.",
+      },
+      {
+        type: "image",
+        src: "/blog/screenshots/shipping-bulk.png",
+        alt: "Shipping label bulk spreadsheet with Excel import and add row controls",
+        caption:
+          "For multiple shipments, add rows manually or import the Excel template.",
       },
       // ── END OF ARTICLE ──
     ],
@@ -238,40 +288,91 @@ export const blogPosts: BlogPost[] = [
         type: "p",
         text: "Open the Packing Slip Generator, choose a visual template, and select A4 or A5 paper.",
       },
+      {
+        type: "image",
+        src: "/blog/screenshots/packing-templates.png",
+        alt: "Packing Slip Generator template selection",
+        caption:
+          "Choose a Standard, Minimal, Modern, Compact or Branded packing slip.",
+      },
       { type: "h2", text: "Step 2 – Enter Order Information" },
       {
         type: "p",
         text: "Add the order number, order date and optional packing slip number.",
+      },
+      {
+        type: "image",
+        src: "/blog/screenshots/packing-order.png",
+        alt: "Packing slip order information and A4 A5 paper size selector",
+        caption: "Enter order information and select A4 or A5 paper.",
       },
       { type: "h2", text: "Step 3 – Enter Sender Information" },
       {
         type: "p",
         text: "Enter your shop, warehouse or return-address details.",
       },
+      {
+        type: "image",
+        src: "/blog/screenshots/packing-sender.png",
+        alt: "Packing slip sender information form",
+        caption: "Add the sender, shop or warehouse details.",
+      },
       { type: "h2", text: "Step 4 – Enter Ship-To Information" },
       {
         type: "p",
         text: "Add the customer's delivery name and address exactly as it appears on the order.",
+      },
+      {
+        type: "image",
+        src: "/blog/screenshots/packing-recipient.png",
+        alt: "Packing slip ship-to information form",
+        caption: "Enter the customer’s ship-to details.",
       },
       { type: "h2", text: "Step 5 – Add Order Items" },
       {
         type: "p",
         text: "Add each SKU, description, variant and quantity. Duplicate rows when products share similar details.",
       },
+      {
+        type: "image",
+        src: "/blog/screenshots/packing-items.png",
+        alt: "Packing slip item editor with SKU description variant and quantity",
+        caption: "Add every item, SKU, variant and quantity in the parcel.",
+      },
       { type: "h2", text: "Step 6 – Add Special Instructions" },
       {
         type: "p",
         text: "Include packing notes, a customer message, footer text and an optional business logo.",
+      },
+      {
+        type: "image",
+        src: "/blog/screenshots/packing-branding.png",
+        alt: "Packing slip branding display and message controls",
+        caption:
+          "Customize the heading, logo, visible columns and customer messages.",
       },
       { type: "h2", text: "Step 7 – Preview the Packing Slip" },
       {
         type: "p",
         text: "Check the addresses and ensure every item remains aligned in the live preview.",
       },
+      {
+        type: "image",
+        src: "/blog/screenshots/packing-preview.png",
+        alt: "Live preview of an A4 packing slip",
+        caption: "Confirm the selected template and paper-size preview.",
+      },
       { type: "h2", text: "Step 8 – Download or Print" },
       {
         type: "p",
         text: "Generate the A4 or A5 PDF, download a copy or open the system print dialog.",
+      },
+      {
+        type: "image",
+        src: "/blog/screenshots/packing-pdf.png",
+        alt: "Generated printable packing slip PDF",
+        caption:
+          "Download the generated PDF or send it to the system print dialog.",
       },
       // ── END OF ARTICLE ──
     ],

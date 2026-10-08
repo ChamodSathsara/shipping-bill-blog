@@ -24,6 +24,25 @@ type Errors = Record<string, string>;
 type Done = { id: string; pdfBase64: string; filename: string };
 const input =
   "mt-1.5 min-h-11 w-full rounded-lg border border-border bg-background px-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20";
+
+function openSystemPrintDialog(pdfUrl: string) {
+  const printWindow = window.open(pdfUrl, "_blank");
+  if (!printWindow) {
+    toast.error("Allow pop-ups for this site to open the print dialog.");
+    return;
+  }
+  let opened = false;
+  const print = () => {
+    if (opened || printWindow.closed) return;
+    opened = true;
+    printWindow.focus();
+    printWindow.print();
+  };
+  printWindow.addEventListener("load", () => window.setTimeout(print, 500), {
+    once: true,
+  });
+  window.setTimeout(print, 1800);
+}
 function Field({
   label,
   error,
@@ -314,7 +333,9 @@ export function PackingSlipGenerator() {
                 <select
                   className={input}
                   value={d.paperSize}
-                  onChange={(e) => update("paperSize", e.target.value as "A4" | "A5")}
+                  onChange={(e) =>
+                    update("paperSize", e.target.value as "A4" | "A5")
+                  }
                 >
                   <option value="A4">A4 (210 × 297 mm)</option>
                   <option value="A5">A5 (148 × 210 mm)</option>
@@ -503,7 +524,7 @@ export function PackingSlipGenerator() {
                 <button
                   onClick={() => {
                     const u = blob();
-                    if (u) window.open(u, "_blank");
+                    if (u) openSystemPrintDialog(u);
                   }}
                   className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border text-sm font-bold"
                 >

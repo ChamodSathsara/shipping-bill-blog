@@ -16,41 +16,94 @@ function renderBlock(block: BlogBlock, key: number) {
   switch (block.type) {
     case "h2":
       return (
-        <h2 key={key} id={slugify(block.text)} className="mt-12 scroll-mt-24 font-display text-2xl font-bold tracking-tight text-foreground sm:text-[1.7rem]">
+        <h2
+          key={key}
+          id={slugify(block.text)}
+          className="mt-12 scroll-mt-24 font-display text-2xl font-bold tracking-tight text-foreground sm:text-[1.7rem]"
+        >
           {block.text}
-        </h2>);
+        </h2>
+      );
 
     case "h3":
       return (
-        <h3 key={key} id={slugify(block.text)} className="mt-8 scroll-mt-24 font-display text-xl font-bold text-foreground">
+        <h3
+          key={key}
+          id={slugify(block.text)}
+          className="mt-8 scroll-mt-24 font-display text-xl font-bold text-foreground"
+        >
           {block.text}
-        </h3>);
+        </h3>
+      );
 
     case "ul":
       return (
-        <ul key={key} className="mt-5 list-disc space-y-2 pl-6 text-[1.0625rem] leading-8 text-foreground/85 marker:text-primary">
-          {block.items.map((item) =>
-          <li key={item}>{item}</li>
-          )}
-        </ul>);
+        <ul
+          key={key}
+          className="mt-5 list-disc space-y-2 pl-6 text-[1.0625rem] leading-8 text-foreground/85 marker:text-primary"
+        >
+          {block.items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      );
 
     case "tip":
       return (
-        <div key={key} className="mt-6 flex gap-3 rounded-lg border-l-4 border-primary bg-muted px-5 py-4">
-          <LightbulbIcon className="mt-1 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-          <p className="leading-7 text-foreground"><strong className="font-semibold">Tip: </strong>{block.text}</p>
-        </div>);
+        <div
+          key={key}
+          className="mt-6 flex gap-3 rounded-lg border-l-4 border-primary bg-muted px-5 py-4"
+        >
+          <LightbulbIcon
+            className="mt-1 h-5 w-5 shrink-0 text-primary"
+            aria-hidden="true"
+          />
+          <p className="leading-7 text-foreground">
+            <strong className="font-semibold">Tip: </strong>
+            {block.text}
+          </p>
+        </div>
+      );
+
+    case "image":
+      return (
+        <figure
+          key={key}
+          className="my-8 overflow-hidden rounded-xl border border-border bg-card shadow-sm"
+        >
+          <img
+            src={block.src}
+            alt={block.alt}
+            className="h-auto w-full"
+            loading="lazy"
+          />
+          <figcaption className="border-t border-border px-4 py-3 text-sm leading-6 text-muted-foreground">
+            {block.caption}
+          </figcaption>
+        </figure>
+      );
 
     default:
       return (
-        <p key={key} className="mt-5 text-[1.0625rem] leading-8 text-foreground/85">
+        <p
+          key={key}
+          className="mt-5 text-[1.0625rem] leading-8 text-foreground/85"
+        >
           {block.text}
-        </p>);
-
+        </p>
+      );
   }
 }
 
-export function ArticleBody({ blocks, slug, product }: {blocks: BlogBlock[];slug: string;product?: Product;}) {
+export function ArticleBody({
+  blocks,
+  slug,
+  product,
+}: {
+  blocks: BlogBlock[];
+  slug: string;
+  product?: Product;
+}) {
   const nodes: React.ReactNode[] = [];
   let paragraphCount = 0;
 
@@ -59,10 +112,19 @@ export function ArticleBody({ blocks, slug, product }: {blocks: BlogBlock[];slug
     if (block.type !== "p") return;
     paragraphCount += 1;
     if (AD_AFTER_PARAGRAPHS.includes(paragraphCount)) {
-      nodes.push(<AdSlot key={`ad-${paragraphCount}`} slotId={`${slug}-inarticle-${paragraphCount}`} format="in-article" className="my-10" />);
+      nodes.push(
+        <AdSlot
+          key={`ad-${paragraphCount}`}
+          slotId={`${slug}-inarticle-${paragraphCount}`}
+          format="in-article"
+          className="my-10"
+        />,
+      );
     }
     if (paragraphCount === TOOL_CARD_AFTER_PARAGRAPH && product) {
-      nodes.push(<TryToolCard key="try-tool" product={product} className="my-10" />);
+      nodes.push(
+        <TryToolCard key="try-tool" product={product} className="my-10" />,
+      );
     }
   });
 

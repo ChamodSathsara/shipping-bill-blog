@@ -9,7 +9,8 @@ export type BlogBlock =
   | { type: "h2"; text: string }
   | { type: "h3"; text: string }
   | { type: "ul"; items: string[] }
-  | { type: "tip"; text: string };
+  | { type: "tip"; text: string }
+  | { type: "image"; src: string; alt: string; caption: string };
 
 export interface Author {
   name: string;
