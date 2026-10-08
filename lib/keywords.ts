@@ -7,18 +7,21 @@
 //   4, 5 → supporting keywords (meta keywords, FAQ, SEO text)
 // While a value is still a {{PLACEHOLDER}}, the page falls back to a sensible default phrase.
 export const HOME_KEYWORDS: string[] = [
-"{{KEYWORD_1}}",
-"{{KEYWORD_2}}",
-"{{KEYWORD_3}}",
-"{{KEYWORD_4}}",
-"{{KEYWORD_5}}",
-"{{KEYWORD_6}}"];
-
+  "free shipping tools for online sellers",
+  "free shipping tools",
+  "ecommerce shipping tools",
+  "shipping tools for small business",
+  "online seller tools",
+  "free fulfillment tools",
+  "order fulfillment tools",
+  "small business shipping tools",
+];
 
 export const HOME_KEYWORD_FALLBACKS: string[] = [
-"free shipping label maker",
-"printable shipping label",
-"packing slip generator",
-"4x6 shipping label converter",
-"shipping tools for online sellers",
-"thermal label printer"];
+  "free shipping label maker",
+  "printable shipping label",
+  "packing slip generator",
+  "4x6 shipping label converter",
+  "shipping tools for online sellers",
+  "thermal label printer",
+];
