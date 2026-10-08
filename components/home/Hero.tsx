@@ -5,8 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRightIcon, CheckIcon } from "lucide-react";
 import { buttonVariants } from "../../lib/utils/buttonVariants";
-import { capitalize } from "../../lib/utils/format";
-import { homeKeyword } from "../../lib/utils/keywords";
 import { Container } from "../ui/Container";
 import { LabelMockup } from "./LabelMockup";
 
@@ -18,10 +16,10 @@ export function Hero() {
       <Container className="grid items-center gap-14 py-16 md:py-20 lg:grid-cols-[1.15fr_1fr] lg:gap-12 lg:py-24">
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}>
           <h1 id="hero-heading" className="font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.5rem]">
-            <span className="text-primary">{capitalize(homeKeyword(0))}</span> and fulfillment tools for online sellers
+            <span className="text-primary">Free shipping tools</span> for online sellers
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            Create a {homeKeyword(1)}, generate a {homeKeyword(2)}, or resize carrier labels to 4x6 — built for Etsy, eBay, Amazon,
+            Create shipping labels and packing slips with free ecommerce shipping tools built for Etsy, eBay, Amazon,
             Shopify and Poshmark sellers who ship from home.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

@@ -15,13 +15,12 @@ import { Container } from "../components/ui/Container";
 import { homeFaqs } from "../lib/homeContent";
 import { siteConfig } from "../lib/siteConfig";
 import { usePageMeta } from "../hooks/usePageMeta";
-import { capitalize } from "../lib/utils/format";
-import { allHomeKeywords, homeKeyword } from "../lib/utils/keywords";
+import { allHomeKeywords } from "../lib/utils/keywords";
 
 export function Home() {
   usePageMeta({
-    title: `${capitalize(homeKeyword(0))} for Sellers | ${siteConfig.name}`,
-    description: `${capitalize(homeKeyword(0))}, ${homeKeyword(2)} and 4x6 label resizer for Etsy, eBay and Amazon sellers. Free, no signup, works in your browser.`,
+    title: `Free Shipping Tools for Online Sellers | ${siteConfig.name}`,
+    description: "Create 4×6 shipping labels and A4 or A5 packing slips with free ecommerce shipping tools for online sellers and small businesses.",
     path: "/",
     keywords: allHomeKeywords()
   });
@@ -58,7 +57,7 @@ export function Home() {
       <LatestPosts />
       <FaqSection
         title="Frequently asked questions"
-        description={`Answers about our ${homeKeyword(0)}, label sizes, printers and privacy.`}
+        description="Answers about our free shipping tools, label sizes, packing slips, printers and privacy."
         faqs={homeFaqs} />
       
       <Container>
@@ -67,7 +66,7 @@ export function Home() {
       <CtaBanner
         title="Start with your first label"
         description="Pick a tool, fill in a few fields and print. It really is that quick."
-        primary={{ label: "Explore Free Tools", href: "/products" }}
+        primary={{ label: "Create a Shipping Label", href: "/shipping-label-maker" }}
         secondary={{ label: "Read Guides", href: "/blog" }} />
       
       <SeoTextBlock />

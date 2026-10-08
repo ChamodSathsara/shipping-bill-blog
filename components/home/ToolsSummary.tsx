@@ -2,8 +2,6 @@
 
 import React from "react";
 import type { Product } from "../../lib/types/product";
-import { capitalize } from "../../lib/utils/format";
-import { homeKeyword } from "../../lib/utils/keywords";
 import { ProductSummaryCard } from "../products/ProductSummaryCard";
 import { Container } from "../ui/Container";
 import { SectionHeading } from "../ui/SectionHeading";
@@ -50,7 +48,7 @@ export function ToolsSummary() {
         <SectionHeading
           id="tools-heading"
           title="Two free tools for every parcel you ship"
-          description={`${capitalize(homeKeyword(2))} and a printable label maker — launching soon, free forever.`}
+          description="Create printable 4×6 shipping labels and professional A4 or A5 packing slips online for free."
         />
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">

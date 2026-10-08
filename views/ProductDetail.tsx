@@ -20,7 +20,7 @@ export function ProductDetail({ product, relatedProduct }: { product: Product; r
   usePageMeta({
     title: product?.metaTitle ?? "Product not found",
     description: product?.metaDescription ?? "This product could not be found.",
-    path: `/products/${product.slug}`,
+    path: `/${product.slug}`,
     keywords: product?.keywords
   });
 
@@ -35,7 +35,7 @@ export function ProductDetail({ product, relatedProduct }: { product: Product; r
     description: product.metaDescription,
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web browser",
-    url: `${siteConfig.url}/products/${product.slug}`,
+    url: `${siteConfig.url}/${product.slug}`,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     publisher: { "@type": "Organization", name: siteConfig.name }
   };

@@ -93,6 +93,7 @@ export function BlogPost({ slug }: { slug: string }) {
       url: siteConfig.url,
     },
     mainEntityOfPage: url,
+    image: `${siteConfig.url}${post.image}`,
     articleSection: post.category,
     keywords: post.tags.join(", "),
   };

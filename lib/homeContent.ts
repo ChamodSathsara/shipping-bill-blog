@@ -1,5 +1,4 @@
 import type { Faq } from "../lib/types/product";
-import { homeKeyword } from "../lib/utils/keywords";
 
 export const howItWorksSteps = [
 {
@@ -25,8 +24,8 @@ const;
 
 export const homeFaqs: Faq[] = [
 {
-  question: `Is the ${homeKeyword(0)} free to use?`,
-  answer: `Yes. Every ShipKit tool, including the ${homeKeyword(0)}, will be free with no signup and no label limits. The site is supported by a small number of ads.`
+  question: "Are ShipKit's free shipping tools free to use?",
+  answer: "Yes. The shipping label maker and packing slip generator are free to use with no signup or watermark."
 },
 {
   question: "Do I need to create an account?",
@@ -34,11 +33,11 @@ export const homeFaqs: Faq[] = [
 },
 {
   question: "Which label sizes are supported?",
-  answer: `The standard 4x6 inch thermal label plus A4 and US Letter sheets. Our ${homeKeyword(3)} turns full-page carrier PDFs into 4x6 labels.`
+  answer: "Shipping labels use the standard 4×6 inch thermal format. Packing slips can be generated on A4 or A5 paper."
 },
 {
   question: "Can I use these tools for Etsy, eBay and Amazon orders?",
-  answer: `Yes. ShipKit is built as a set of ${homeKeyword(4)} on Etsy, eBay, Amazon, Shopify, Poshmark and independent stores.`
+  answer: "Yes. These online seller tools support Etsy, eBay, Amazon, Shopify, Poshmark and independent ecommerce stores."
 },
 {
   question: "Do you store my customers' addresses?",
@@ -46,5 +45,5 @@ export const homeFaqs: Faq[] = [
 },
 {
   question: "What printer do I need?",
-  answer: `Any ${homeKeyword(5)} that accepts 4x6 labels (Rollo, Munbyn, Zebra, Dymo 4XL) or a regular inkjet or laser printer.`
+  answer: "Use any thermal printer that accepts 4×6 labels, such as Rollo, Munbyn or Zebra. Packing slips work with regular inkjet and laser printers."
 }];

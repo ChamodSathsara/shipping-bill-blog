@@ -9,5 +9,5 @@ export function homeKeyword(index: number): string {
 }
 
 export function allHomeKeywords(): string[] {
-  return HOME_KEYWORD_FALLBACKS.map((_, i) => homeKeyword(i)).filter(Boolean);
+  return HOME_KEYWORDS.map((_, i) => homeKeyword(i)).filter(Boolean);
 }

@@ -7,7 +7,7 @@ const shippingLabelMaker = {
   name: "Shipping Label Maker",
   summary:
     "Enter sender and receiver details, order number and weight, then generate a printable 4x6 shipping label.",
-  metaTitle: "Free Shipping Label Maker – 4x6 & Printable",
+  metaTitle: "Free Shipping Label Maker – Create & Print Labels Online",
   metaDescription:
     "Make printable 4x6 shipping labels for free and export them as PDF with no signup.",
   keywords: [
@@ -16,6 +16,12 @@ const shippingLabelMaker = {
     "4x6 shipping label maker",
     "printable shipping label",
     "shipping label generator",
+    "free shipping label generator",
+    "online shipping label maker",
+    "shipping label creator",
+    "create shipping label online",
+    "thermal shipping label maker",
+    "shipping label template",
   ],
   status: "live",
   icon: "label",
@@ -73,14 +79,14 @@ const shippingLabelMaker = {
     {
       heading: "A free shipping label maker for small sellers",
       paragraphs: [
-        "Create a clear address label without subscribing to a full shipping platform. This tool is designed for marketplace sellers, replacement shipments and orders handled outside a marketplace checkout.",
+        "Use this online shipping label maker to create a shipping label online without subscribing to a full shipping platform. The shipping label creator is designed for marketplace sellers, replacement shipments and orders handled outside a marketplace checkout.",
         "The workflow runs in the browser, so there is no account to create and customer address information stays on your device.",
       ],
     },
     {
       heading: "Print 4x6 labels or use regular paper",
       paragraphs: [
-        "Every template uses the standard 4x6 thermal format with readable type, barcode quiet zones and dependable print spacing.",
+        "Every shipping label template uses the standard 4×6 thermal format with readable type, barcode quiet zones and dependable print spacing. This makes the tool useful as both a 4×6 shipping label maker and thermal shipping label maker.",
       ],
     },
   ],
@@ -98,6 +104,10 @@ const shippingLabelMaker = {
       question: "Which printers are supported?",
       answer:
         "It supports common 4x6 thermal printers and standard inkjet or laser printers.",
+    },
+    {
+      question: "Can I create and print a shipping label online?",
+      answer: "Yes. Enter the shipment details, choose a template, check the live preview and download or print the generated 4×6 PDF.",
     },
     {
       question: "Is address data stored?",

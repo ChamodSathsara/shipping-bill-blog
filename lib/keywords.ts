@@ -14,6 +14,7 @@ export const HOME_KEYWORDS: string[] = [
   "online seller tools",
   "free fulfillment tools",
   "order fulfillment tools",
+  "shipping tools for ecommerce",
   "small business shipping tools",
 ];
 
