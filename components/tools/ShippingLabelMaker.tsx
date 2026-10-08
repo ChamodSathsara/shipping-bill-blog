@@ -28,6 +28,24 @@ type Done = { id: string; pdfUrl: string; quantity: number };
 type Errors = Record<string, string>;
 const control =
   "mt-1.5 min-h-11 w-full rounded-lg border border-border bg-background px-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20";
+
+function openSystemPrintDialog(pdfUrl: string) {
+  const printWindow = window.open(pdfUrl, "_blank");
+  if (!printWindow) {
+    toast.error("Allow pop-ups for this site to open the print dialog.");
+    return;
+  }
+  let opened = false;
+  const print = () => {
+    if (opened || printWindow.closed) return;
+    opened = true;
+    printWindow.focus();
+    printWindow.print();
+  };
+  printWindow.addEventListener("load", () => window.setTimeout(print, 500), { once: true });
+  // PDF viewers do not all dispatch load consistently; this is a safe fallback.
+  window.setTimeout(print, 1800);
+}
 const options = {
   packageType: [
     "BOX",
@@ -421,9 +439,7 @@ export function ShippingLabelMaker() {
                     PDF
                   </a>
                   <button
-                    onClick={() =>
-                      window.open(done.pdfUrl, "_blank", "noopener,noreferrer")
-                    }
+                    onClick={() => openSystemPrintDialog(done.pdfUrl)}
                     className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border px-3 text-sm font-bold"
                   >
                     <PrinterIcon className="h-4 w-4" />
@@ -485,7 +501,7 @@ function BulkSpreadsheet({templateId,baseData}:{templateId:TemplateId;baseData:L
   <div className="flex flex-wrap items-start justify-between gap-4"><div><p className="flex items-center gap-2 text-sm font-bold text-primary"><FileSpreadsheetIcon className="h-4 w-4"/>Bulk generate</p><h2 className="mt-1 font-display text-2xl font-extrabold">Shipping label spreadsheet</h2><p className="mt-2 text-sm text-muted-foreground">Add and edit rows here, or import an existing Excel sheet. Select the rows you want to generate.</p></div><div className="flex flex-wrap gap-2"><a href="/api/shipping-labels/bulk/template" className="inline-flex min-h-11 items-center gap-2 rounded-lg border bg-card px-4 text-sm font-bold"><DownloadIcon className="h-4 w-4"/>Excel template</a><label className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border bg-card px-4 text-sm font-bold"><UploadIcon className="h-4 w-4"/>Import Excel<input type="file" accept=".xlsx" className="sr-only" disabled={busy} onChange={e=>{const f=e.target.files?.[0];if(f)void upload(f);e.currentTarget.value=""}}/></label><button onClick={addRow} className="min-h-11 rounded-lg bg-primary px-4 text-sm font-bold text-primary-foreground">+ Add row</button></div></div>
   {rows.length===0?<button onClick={addRow} className="mt-6 flex min-h-36 w-full flex-col items-center justify-center rounded-xl border-2 border-dashed bg-card text-sm font-bold text-muted-foreground"><FileSpreadsheetIcon className="mb-2 h-7 w-7 text-primary"/>Add your first shipping label row</button>:<>
    <div className="mt-6 overflow-auto rounded-xl border border-border bg-card text-card-foreground shadow-sm [color-scheme:light] dark:[color-scheme:dark]"><table className="border-collapse text-left text-xs" style={{minWidth:"2500px"}}><thead className="sticky top-0 z-10 bg-muted text-foreground shadow-sm"><tr><th className="sticky left-0 z-20 w-12 border-b border-r border-border bg-muted p-2 text-center"><input className="h-4 w-4 accent-primary" type="checkbox" checked={allSelected} onChange={e=>setRows(v=>v.map(r=>({...r,selected:e.target.checked})))}/></th><th className="w-12 border-b border-r border-border p-2">#</th>{sheetColumns.map(c=><th key={c.label} className="border-b border-r border-border p-2 font-bold" style={{width:c.width,minWidth:c.width}}>{c.label}</th>)}<th className="w-20 border-b border-border p-2">Status</th></tr></thead><tbody>{rows.map((row,index)=>{const parsed=labelDataSchema.safeParse(row.data);return <tr key={row.id} className={cn("border-t border-border transition-colors hover:bg-muted/50",row.selected&&"bg-primary/10 hover:bg-primary/15")}><td className={cn("sticky left-0 z-[5] border-r border-border p-2 text-center",row.selected?"bg-accent":"bg-card")}><input className="h-4 w-4 accent-primary" type="checkbox" checked={row.selected} onChange={e=>setRows(v=>v.map(r=>r.id===row.id?{...r,selected:e.target.checked}:r))}/></td><td className="border-r border-border p-2 font-bold">{index+1}</td>{sheetColumns.map(c=><td key={c.label} className="border-r border-border p-0">{c.options?<select className="h-10 w-full bg-transparent px-2 text-foreground outline-none focus:bg-accent focus:ring-2 focus:ring-inset focus:ring-primary/40" value={c.get(row.data)} onChange={e=>updateCell(row.id,c,e.target.value)}>{c.options.map(o=><option className="bg-card text-foreground" key={o}>{o}</option>)}</select>:<input type={c.type||"text"} min={c.type==="number"?"0.01":undefined} step={c.type==="number"?"0.01":undefined} className="h-10 w-full bg-transparent px-2 text-foreground placeholder:text-muted-foreground outline-none focus:bg-accent focus:ring-2 focus:ring-inset focus:ring-primary/40" value={c.get(row.data)} onChange={e=>updateCell(row.id,c,e.target.value)}/>}</td>)}<td className="p-2">{parsed.success?<span className="font-bold text-emerald-600 dark:text-emerald-400">Ready</span>:<span className="font-bold text-destructive" title={parsed.error.issues.map(i=>`${i.path.join(".")}: ${i.message}`).join("\n")}>Fix row</span>}</td></tr>})}</tbody></table></div>
-   <div className="mt-4 flex flex-wrap items-center gap-3"><button onClick={addRow} className="min-h-11 rounded-lg border bg-card px-4 text-sm font-bold">+ Add row</button><button disabled={!selected.length} onClick={()=>setRows(v=>v.filter(r=>!r.selected))} className="inline-flex min-h-11 items-center gap-2 rounded-lg border px-4 text-sm font-bold text-destructive disabled:opacity-40"><Trash2Icon className="h-4 w-4"/>Delete selected</button><span className="text-sm text-muted-foreground">{selected.length} of {rows.length} selected · {validSelected.length} ready</span><button disabled={busy||!validSelected.length||validSelected.length!==selected.length} onClick={generate} className="ml-auto min-h-11 rounded-lg bg-primary px-5 text-sm font-bold text-primary-foreground disabled:opacity-40">{busy?"Generating…":`Generate ${selected.length} selected`}</button>{pdfUrl&&<><a href={pdfUrl} download="shipping-labels.pdf" className="inline-flex min-h-11 items-center gap-2 rounded-lg border bg-card px-4 text-sm font-bold"><DownloadIcon className="h-4 w-4"/>Download PDF</a><button onClick={()=>window.open(pdfUrl,"_blank","noopener,noreferrer")} className="inline-flex min-h-11 items-center gap-2 rounded-lg border bg-card px-4 text-sm font-bold"><PrinterIcon className="h-4 w-4"/>Print</button></>}</div>
+   <div className="mt-4 flex flex-wrap items-center gap-3"><button onClick={addRow} className="min-h-11 rounded-lg border bg-card px-4 text-sm font-bold">+ Add row</button><button disabled={!selected.length} onClick={()=>setRows(v=>v.filter(r=>!r.selected))} className="inline-flex min-h-11 items-center gap-2 rounded-lg border px-4 text-sm font-bold text-destructive disabled:opacity-40"><Trash2Icon className="h-4 w-4"/>Delete selected</button><span className="text-sm text-muted-foreground">{selected.length} of {rows.length} selected · {validSelected.length} ready</span><button disabled={busy||!validSelected.length||validSelected.length!==selected.length} onClick={generate} className="ml-auto min-h-11 rounded-lg bg-primary px-5 text-sm font-bold text-primary-foreground disabled:opacity-40">{busy?"Generating…":`Generate ${selected.length} selected`}</button>{pdfUrl&&<><a href={pdfUrl} download="shipping-labels.pdf" className="inline-flex min-h-11 items-center gap-2 rounded-lg border bg-card px-4 text-sm font-bold"><DownloadIcon className="h-4 w-4"/>Download PDF</a><button onClick={()=>openSystemPrintDialog(pdfUrl)} className="inline-flex min-h-11 items-center gap-2 rounded-lg border bg-card px-4 text-sm font-bold"><PrinterIcon className="h-4 w-4"/>Print</button></>}</div>
   </>}
  </section>
 }
@@ -672,9 +688,7 @@ function BulkSection({ templateId }: { templateId: TemplateId }) {
                   Combined PDF
                 </a>
                 <button
-                  onClick={() =>
-                    window.open(pdfUrl, "_blank", "noopener,noreferrer")
-                  }
+                  onClick={() => openSystemPrintDialog(pdfUrl)}
                   className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-border bg-card px-5 text-sm font-bold"
                 >
                   <PrinterIcon className="h-4 w-4" />
