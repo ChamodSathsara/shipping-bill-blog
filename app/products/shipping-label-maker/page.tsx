@@ -114,7 +114,7 @@ const packingSlipGenerator = {
   metaTitle: "Free Packing Slip Generator",
   metaDescription: "Create printable packing slips for online orders.",
   keywords: ["packing slip generator", "packing slip template"],
-  status: "coming-soon",
+  status: "live",
   icon: "slip",
   highlights: ["SKU and variants", "Custom shop details", "4x6, A4 or Letter"],
   longDescription: "Build a tidy packing slip for every parcel.",

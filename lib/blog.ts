@@ -18,17 +18,12 @@ import type { Author, BlogPost, CategoryInfo } from "../lib/types/blog";
  */
 
 export const authors: Record<string, Author> = {
-  maya: {
-    name: "Maya Torres",
-    role: "Fulfillment Editor",
-    bio: "Maya ran a handmade jewelry shop on Etsy for six years and has shipped more than 20,000 orders. She writes about practical shipping workflows for small sellers.",
-    initials: "MT",
-  },
-  dev: {
-    name: "Dev Patel",
-    role: "Product Lead",
-    bio: "Dev builds ShipKit's tools and tests them on every thermal printer he can get his hands on. Previously a warehouse systems engineer.",
-    initials: "DP",
+  chamod: {
+    name: "Chamod Sathsara",
+    role: "Software Engineer",
+    bio: "Software Engineer with a B.Sc. (Hons) in Computation and Management from the University of Peradeniya. Chamod builds practical shipping and fulfillment tools for online sellers.",
+    initials: "CS",
+    linkedIn: "https://www.linkedin.com/in/chamodsathsara",
   },
 };
 
@@ -74,7 +69,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedProduct: "shipping-label-maker",
     readTime: 12,
-    author: authors.maya,
+    author: authors.chamod,
     featured: true,
     content: [
       // ── PASTE FULL ARTICLE BELOW (target 3,000+ words) ──
@@ -188,7 +183,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedProduct: "packing-slip-generator",
     readTime: 9,
-    author: authors.maya,
+    author: authors.chamod,
     featured: false,
     content: [
       // ── PASTE FULL ARTICLE BELOW (target 3,000+ words) ──
@@ -302,7 +297,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedProduct: "shipping-label-maker",
     readTime: 10,
-    author: authors.dev,
+    author: authors.chamod,
     featured: false,
     content: [
       // ── PASTE FULL ARTICLE BELOW (target 3,000+ words) ──
@@ -366,7 +361,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedProduct: "shipping-label-maker",
     readTime: 14,
-    author: authors.maya,
+    author: authors.chamod,
     featured: false,
     content: [
       // ── PASTE FULL ARTICLE BELOW (target 3,000+ words) ──

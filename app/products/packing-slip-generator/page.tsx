@@ -42,7 +42,7 @@ const packingSlipGenerator = {
 const shippingLabelMaker = {
   slug: "shipping-label-maker", name: "Shipping Label Maker", summary: "Create printable 4x6, A4 or Letter shipping labels.",
   metaTitle: "Free Shipping Label Maker", metaDescription: "Create printable shipping labels.",
-  keywords: ["shipping label maker", "4x6 shipping label"], status: "coming-soon", icon: "label",
+  keywords: ["shipping label maker", "4x6 shipping label"], status: "live", icon: "label",
   highlights: ["4x6 thermal output", "Address fields", "PDF download"], longDescription: "Create clean printable shipping labels.",
   features: [], steps: [], seoContent: [], faqs: [],
 } satisfies Product;

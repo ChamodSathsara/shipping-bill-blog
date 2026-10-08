@@ -16,6 +16,7 @@ export interface Author {
   role: string;
   bio: string;
   initials: string;
+  linkedIn: string;
 }
 
 export interface BlogPost {
