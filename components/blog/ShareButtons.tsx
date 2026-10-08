@@ -5,14 +5,10 @@ import { LinkIcon } from "lucide-react";
 import { toast } from "sonner";
 import { buttonVariants } from "../../lib/utils/buttonVariants";
 
-export function ShareButtons({ url, title }: {url: string;title: string;}) {
+export function ShareButtons({ url }: {url: string;}) {
   const u = encodeURIComponent(url);
-  const t = encodeURIComponent(title);
   const networks = [
-  { label: "X", href: `https://twitter.com/intent/tweet?url=${u}&text=${t}` },
-  { label: "Facebook", href: `https://www.facebook.com/sharer/sharer.php?u=${u}` },
-  { label: "Pinterest", href: `https://pinterest.com/pin/create/button/?url=${u}&description=${t}` },
-  { label: "WhatsApp", href: `https://wa.me/?text=${t}%20${u}` }];
+  { label: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${u}` }];
 
 
   async function copy() {

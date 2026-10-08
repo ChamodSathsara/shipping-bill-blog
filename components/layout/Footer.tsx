@@ -19,6 +19,14 @@ export function Footer() {
           <a href={`mailto:${siteConfig.email}`} className="mt-4 inline-block text-sm font-medium text-primary hover:underline">
             {siteConfig.email}
           </a>
+          <a
+            href={siteConfig.social.linkedin}
+            target="_blank"
+            rel="me noopener noreferrer"
+            className="mt-2 block text-sm font-medium text-primary hover:underline"
+          >
+            Chamod Sathsara on LinkedIn
+          </a>
         </div>
         {footerColumns.map((col) =>
         <nav key={col.title} aria-label={col.title}>

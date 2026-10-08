@@ -172,7 +172,7 @@ export function BlogPost({ slug }: { slug: string }) {
               ))}
             </ul>
             <div className="mt-8 max-w-reading space-y-8 border-t border-border pt-8">
-              <ShareButtons url={url} title={post.title} />
+              <ShareButtons url={url} />
               <AuthorBox author={post.author} />
             </div>
           </div>
